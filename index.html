@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>49 Months • Tracy & Paul</title>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@500;700;800;900&family=Playfair+Display:ital,wght@0,600;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Caveat:wght@600;700&family=Cinzel:wght@500;700;800;900&family=Patrick+Hand&family=Playfair+Display:ital,wght@0,600;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -348,71 +348,158 @@
             color: var(--dull-gold);
         }
 
-        /* --- STEP 4: BLACK PAPER LETTER --- */
-        .black-paper-card {
-            background: #121214;
-            width: 100%;
-            max-width: 900px;
-            padding: 50px 40px;
-            border-radius: 6px;
-            box-shadow: var(--shadow);
+        /* --- STEP 4: REALISTIC BLACK SCRAPBOOK PAGE --- */
+        .scrapbook-wrapper {
             position: relative;
-            border: 1px solid #222226;
+            width: 100%;
+            max-width: 820px;
+            display: flex;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.9);
+            border-radius: 12px;
         }
 
-        .washi-tape-tl {
-            position: absolute; top: -12px; left: -20px; width: 110px; height: 32px;
-            background: rgba(197, 160, 89, 0.7);
-            transform: rotate(-18deg);
-            box-shadow: 0 3px 8px rgba(0,0,0,0.5);
-            border-left: 2px dashed rgba(255,255,255,0.4);
-            border-right: 2px dashed rgba(255,255,255,0.4);
-        }
-
-        .washi-tape-tr {
-            position: absolute; top: -12px; right: -20px; width: 110px; height: 32px;
-            background: rgba(137, 207, 240, 0.6);
-            transform: rotate(18deg);
-            box-shadow: 0 3px 8px rgba(0,0,0,0.5);
-            border-left: 2px dashed rgba(255,255,255,0.4);
-            border-right: 2px dashed rgba(255,255,255,0.4);
-        }
-
-        .white-ink-text {
-            font-family: 'Alex Brush', cursive;
-            font-size: clamp(1.8rem, 3vw, 2.2rem);
-            color: #FFFFFF;
-            line-height: 1.65;
-            text-shadow: 0 0 2px rgba(255,255,255,0.7);
-        }
-
-        .kiss-seal-container {
-            margin-top: 30px;
+        /* Metal Spiral Binder Rings */
+        .binder-spine {
+            width: 45px;
+            background: #111013;
+            border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
             display: flex;
             flex-direction: column;
-            align-items: flex-end;
-            justify-content: center;
-        }
-
-        .kiss-mark {
-            width: 75px;
-            height: 75px;
-            background: radial-gradient(circle, #D62828 40%, transparent 70%);
-            border-radius: 50%;
-            display: flex;
+            justify-content: space-around;
             align-items: center;
-            justify-content: center;
-            font-size: 2.2rem;
-            transform: rotate(-12deg);
-            filter: drop-shadow(0 0 8px rgba(214, 40, 40, 0.6));
+            padding: 30px 0;
+            z-index: 10;
+            border-right: 2px solid #000;
         }
 
-        .kiss-sub {
-            font-size: 0.75rem;
-            color: var(--soft-pink);
+        .binder-ring {
+            width: 55px;
+            height: 18px;
+            background: linear-gradient(180deg, #EAEAEA 0%, #8A8A8A 50%, #4A4A4A 100%);
+            border-radius: 10px;
+            margin-left: 20px;
+            box-shadow: 3px 5px 8px rgba(0,0,0,0.8), inset 0 2px 3px rgba(255,255,255,0.8);
+            position: relative;
+        }
+
+        .binder-hole {
+            width: 14px;
+            height: 14px;
+            background: #080709;
+            border-radius: 50%;
+            position: absolute;
+            left: 8px;
+            top: 2px;
+            box-shadow: inset 1px 1px 3px #000;
+        }
+
+        /* Scrapbook Page Body */
+        .scrapbook-page {
+            flex: 1;
+            background-color: #16151A;
+            /* Fine gel pen speckles & paper texture effect */
+            background-image: 
+                radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+                radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+            background-size: 24px 24px, 12px 12px;
+            background-position: 0 0, 6px 6px;
+            border-top-right-radius: 12px;
+            border-bottom-right-radius: 12px;
+            padding: 40px 35px 40px 45px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #28262E;
+        }
+
+        /* Hand-Drawn SVG Overlay (Borders & Flower Doodles) */
+        .scrapbook-svg-overlay {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Sticker Header Title */
+        .sticker-title-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .sticker-header {
+            background: #D8C3E5;
+            color: #111013;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 2.2rem;
+            font-weight: bold;
+            padding: 6px 28px;
+            border-radius: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5), inset 0 0 0 3px #FFFFFF;
+            transform: rotate(-2deg);
+            display: inline-block;
             letter-spacing: 1px;
-            margin-top: 5px;
-            font-style: italic;
+        }
+
+        /* White Gel Pen Handwriting */
+        .white-gel-letter {
+            font-family: 'Caveat', cursive;
+            font-size: 1.7rem;
+            color: #FFFFFF;
+            line-height: 1.55;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 1px rgba(255, 255, 255, 0.9), 0 0 2px rgba(255, 255, 255, 0.5);
+            position: relative;
+            z-index: 3;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        /* Bottom Photo Element with Washi Tape */
+        .scrapbook-photo-card {
+            position: absolute;
+            bottom: 25px;
+            right: 30px;
+            width: 210px;
+            background: #FFF;
+            padding: 8px 8px 25px 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+            transform: rotate(6deg);
+            z-index: 4;
+        }
+
+        .scrapbook-photo-card img {
+            width: 100%;
+            height: 130px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .washi-tape-top {
+            position: absolute;
+            top: -12px;
+            left: 30%;
+            width: 90px;
+            height: 26px;
+            background: rgba(186, 215, 233, 0.85);
+            transform: rotate(-8deg);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            border-left: 2px dashed rgba(255,255,255,0.5);
+            border-right: 2px dashed rgba(255,255,255,0.5);
+        }
+
+        /* Responsive tweaks for scrapbook */
+        @media (max-width: 768px) {
+            .scrapbook-wrapper { flex-direction: column; }
+            .binder-spine { width: 100%; height: 40px; flex-direction: row; border-radius: 12px 12px 0 0; padding: 0 20px; }
+            .binder-ring { width: 18px; height: 45px; margin-left: 0; margin-top: -15px; }
+            .binder-hole { top: 8px; left: 2px; }
+            .scrapbook-page { padding: 30px 20px; border-radius: 0 0 12px 12px; }
+            .scrapbook-photo-card { position: relative; bottom: 0; right: 0; margin: 30px auto 0; transform: rotate(2deg); }
         }
 
         /* --- STEP 5: CITY TABBED DATE QUESTIONNAIRE WITH PRIORITY SCORES --- */
@@ -729,27 +816,70 @@
 
     <div style="display: flex; gap: 15px; margin-top: 25px;">
         <button class="btn-outline" onclick="goToStep(2)">Back</button>
-        <button class="btn-gold" onclick="goToStep(4)">Read Handwritten Note 💌</button>
+        <button class="btn-gold" onclick="goToStep(4)">Read Scrapbook Letter 💌</button>
     </div>
 </div>
 
-<!-- STEP 4: BLACK PAPER LETTER -->
+<!-- STEP 4: REALISTIC HANDWRITTEN SCRAPBOOK PAGE -->
 <div class="screen-step" id="step4">
-    <div class="black-paper-card">
-        <div class="washi-tape-tl"></div>
-        <div class="washi-tape-tr"></div>
+    <div class="scrapbook-wrapper">
+        <!-- Spiral Binder Rings -->
+        <div class="binder-spine">
+            <div class="binder-ring"><div class="binder-hole"></div></div>
+            <div class="binder-ring"><div class="binder-hole"></div></div>
+            <div class="binder-ring"><div class="binder-hole"></div></div>
+        </div>
 
-        <p class="white-ink-text">
-            Hey my baby, cupcake, boothang, love of my life 💖,<br><br>
-            Happy 49th month anniversary baby! 🎉 I wanted to celebrate this anniversary of the month specially because it marks the first month of our 5th year together my love 🥹✨.<br><br>
-            You are the best thing that has ever happened to me, hands up no kidding baby 🙌❤️. Nakupenda! 😘 I wanted to let you know that my dreams are just filled with wet warm cum meant for your boobs, ass, and your sexy body 🔥💦. I also only dream of spoiling you senseless my baby, that's all I think about baby! 🛍️👑<br><br>
-            It’s been a tough year for both of us but we have come out of half of it being even more in love than we began this journey baby 📈💕. I want to celebrate this anniversary to let you know you're my queen and my leash and your wish is my command baby 👑⛓️. I love you so much my baby!<br><br>
-            Happy 49th month anniversary! ✨
-        </p>
+        <!-- Black Page with Gel Pen Effects -->
+        <div class="scrapbook-page">
+            <!-- SVG Hand-Drawn Double Borders & Lavender Flower Doodles -->
+            <svg class="scrapbook-svg-overlay" viewBox="0 0 600 700" preserveAspectRatio="none">
+                <!-- Double Hand-Drawn Wiggly Frame -->
+                <path d="M 25,20 Q 300,15 575,25 Q 580,350 570,675 Q 300,680 25,670 Q 20,350 25,20" fill="none" stroke="#FFFFFF" stroke-width="2" opacity="0.85"/>
+                <path d="M 32,27 Q 300,22 568,32 Q 573,350 563,668 Q 300,673 32,663 Q 27,350 32,27" fill="none" stroke="#FFFFFF" stroke-width="1.3" opacity="0.6"/>
 
-        <div class="kiss-seal-container">
-            <div class="kiss-mark">💋</div>
-            <div class="kiss-sub">Sealed with my lips & eternal love • Paul</div>
+                <!-- Lavender Flower & Leaf Doodles (Bottom-Left) -->
+                <g transform="translate(45, 430)">
+                    <!-- Flower Petals with Soft Lavender Fill -->
+                    <path d="M 50,70 C 20,40 10,10 50,0 C 90,10 80,40 50,70 Z" fill="rgba(216, 195, 229, 0.45)" stroke="#FFFFFF" stroke-width="1.8"/>
+                    <path d="M 50,70 C 10,60 -10,90 10,120 C 30,140 60,110 50,70 Z" fill="rgba(216, 195, 229, 0.45)" stroke="#FFFFFF" stroke-width="1.8"/>
+                    <path d="M 50,70 C 80,60 110,90 90,120 C 70,140 40,110 50,70 Z" fill="rgba(216, 195, 229, 0.45)" stroke="#FFFFFF" stroke-width="1.8"/>
+                    <path d="M 50,70 C 30,100 20,130 50,150 C 80,130 70,100 50,70 Z" fill="rgba(216, 195, 229, 0.45)" stroke="#FFFFFF" stroke-width="1.8"/>
+                    
+                    <!-- Center Stamen -->
+                    <circle cx="50" cy="70" r="10" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+                    <circle cx="50" cy="70" r="4" fill="#FFFFFF"/>
+
+                    <!-- Vine Leaf Doodles -->
+                    <path d="M 50,150 Q 80,180 130,190" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+                    <path d="M 70,165 Q 90,150 95,160 Q 80,175 70,165 Z" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+                    <path d="M 95,175 Q 115,160 120,170 Q 105,185 95,175 Z" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+
+                    <path d="M 0,50 Q -20,20 -10,-10" fill="none" stroke="#FFFFFF" stroke-width="1.8"/>
+                    <path d="M -10,35 Q -30,25 -25,15 Q -10,25 -10,35 Z" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+                </g>
+            </svg>
+
+            <!-- Pastel Sticker Title Header -->
+            <div class="sticker-title-container">
+                <div class="sticker-header">49 Months Together</div>
+            </div>
+
+            <!-- Authentic White Gel Pen Letter Text -->
+            <p class="white-gel-letter">
+                Hey my baby, cupcake, boothang, love of my life 💖,<br><br>
+                Happy 49th month anniversary baby! 🎉 I wanted to celebrate this milestone specially because it marks the first month of our 5th year together my love 🥹✨.<br><br>
+                You are the best thing that has ever happened to me, hands down no kidding baby 🙌❤️. Nakupenda! 😘 My dreams are filled with spooling and pampering you, spoiling you senseless my baby, that’s all I think about! 🛍️👑<br><br>
+                It’s been a tough year for both of us but we have come out even more in love than when we began baby 📈💕. You are my queen and your wish is my command. I love you so much my baby!<br><br>
+                Forever yours, <br>
+                <strong>Paul Ondieki 💋</strong>
+            </p>
+
+            <!-- Polarizing Photo Accent taped with Washi Tape -->
+            <div class="scrapbook-photo-card">
+                <div class="washi-tape-top"></div>
+                <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=500&q=80" alt="Love Memories">
+            </div>
         </div>
     </div>
 
@@ -804,7 +934,7 @@
         </div>
     </div>
 
-    <!-- MOMBASA CONTENT (RESTORED FULL LIST) -->
+    <!-- MOMBASA CONTENT -->
     <div class="city-content" id="city-mombasa" data-city="Mombasa">
         <div class="subcategory-header" data-category="Picnics">🧺 PICNICS</div>
         <div class="spots-grid">
@@ -834,7 +964,7 @@
         </div>
     </div>
 
-    <!-- NAKURU CONTENT (RESTORED FULL LIST) -->
+    <!-- NAKURU CONTENT -->
     <div class="city-content" id="city-nakuru" data-city="Nakuru">
         <div class="subcategory-header" data-category="Picnics">🧺 PICNICS</div>
         <div class="spots-grid">
