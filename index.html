@@ -73,7 +73,7 @@
             transform: scale(1.3);
         }
 
-        /* Audio Toggle Button */
+        /* Audio Tone Toggle Button */
         .audio-toggle-btn {
             position: fixed;
             bottom: 20px;
@@ -114,28 +114,6 @@
             transition: 0.3s;
         }
         .vault-btn:hover { transform: translateY(-2px); box-shadow: 0 0 15px var(--soft-pink); }
-
-        /* Playlist Modal Toggle Button */
-        .playlist-btn {
-            position: fixed;
-            bottom: 65px;
-            right: 20px;
-            z-index: 100;
-            background: rgba(137, 207, 240, 0.2);
-            border: 1px solid var(--sky-blue);
-            color: var(--sky-blue);
-            padding: 8px 16px;
-            border-radius: 30px;
-            cursor: pointer;
-            backdrop-filter: blur(8px);
-            font-size: 0.75rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: 0.3s;
-        }
-        .playlist-btn:hover { background: var(--sky-blue); color: #000; }
 
         /* --- SCREEN STEP CONTAINER --- */
         .screen-step {
@@ -285,7 +263,7 @@
         .binder-spine {
             width: 45px; background: #111013;
             border-top-left-radius: 12px; border-bottom-left-radius: 12px;
-            display: flex; flex-direction: column; justify-content: space-around;
+            display: flex; flex-direction: column; justify-space-around;
             align-items: center; padding: 30px 0; z-index: 10; border-right: 2px solid #000;
         }
         .binder-ring {
@@ -380,13 +358,6 @@
         .itinerary-actions { display: flex; gap: 8px; }
         .cal-btn { background: rgba(137, 207, 240, 0.15); border: 1px solid var(--sky-blue); color: var(--sky-blue); padding: 5px 10px; border-radius: 8px; font-size: 0.7rem; cursor: pointer; text-decoration: none; font-weight: bold; }
 
-        /* Spinner Wheel Section */
-        .spinner-section {
-            background: #100C14; border: 1px solid var(--border-dark);
-            border-radius: 16px; padding: 20px; text-align: center; margin-top: 20px;
-        }
-        #wheelCanvas { max-width: 250px; height: auto; }
-
         /* --- 49 MEMORY VAULT MODAL --- */
         .vault-modal {
             display: none; position: fixed; inset: 0;
@@ -408,32 +379,6 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
         .vault-card:hover { background: var(--dull-gold); color: #000; transform: scale(1.1); box-shadow: 0 0 15px var(--dull-gold); }
-
-        /* PLAYLIST MODAL */
-        .playlist-modal {
-            display: none; position: fixed; inset: 0;
-            background: rgba(0,0,0,0.92); backdrop-filter: blur(12px);
-            z-index: 200; padding: 30px 20px;
-            flex-direction: column; align-items: center; justify-content: center;
-            animation: fadeIn 0.4s ease;
-        }
-        .playlist-modal.active { display: flex; }
-        .playlist-card-container {
-            background: var(--card-dark); border: 2px solid var(--dull-gold);
-            border-radius: 20px; padding: 25px; max-width: 480px; width: 100%;
-            box-shadow: 0 0 30px rgba(197, 160, 89, 0.3);
-        }
-        .song-item {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 12px 14px; border-bottom: 1px solid var(--border-dark);
-            cursor: pointer; transition: background 0.2s; border-radius: 8px;
-        }
-        .song-item:hover { background: rgba(197, 160, 89, 0.15); }
-        .song-item.active-song { background: rgba(197, 160, 89, 0.25); border-left: 3px solid var(--dull-gold); }
-        .song-item:last-child { border-bottom: none; }
-        .song-title { font-weight: 700; color: var(--beige); font-size: 0.95rem; }
-        .song-artist { font-size: 0.8rem; color: var(--sky-blue); }
-        .play-indicator { font-size: 0.8rem; color: var(--dull-gold); font-weight: bold; }
 
         /* Single Reason Pop-up Box */
         .reason-popup {
@@ -483,12 +428,8 @@
 </div>
 
 <!-- UTILITY BUTTONS -->
-<button class="playlist-btn" onclick="togglePlaylistModal(true)">🎶 Our Playlist</button>
-<button class="audio-toggle-btn" onclick="toggleAudio()"><span id="audioIcon">🎵</span> <span id="currentTrackLabel">Kethan - Kesho Kutwa</span></button>
+<button class="audio-toggle-btn" onclick="toggleAudio()"><span id="audioIcon">🔔</span> <span id="currentTrackLabel">Ambient Tone: Off</span></button>
 <button class="vault-btn" onclick="toggleVaultModal(true)">💎 49 Reasons Vault</button>
-
-<!-- AUDIO ENGINE -->
-<audio id="bgmAudio" loop src="kethan-kesho-kutwa.mp3"></audio>
 
 <!-- STEP 1: COVER WITH LUXURY WATCH DIAL -->
 <div class="screen-step active" id="step1">
@@ -559,7 +500,6 @@
                 <div class="scratch-secret-text">🎁 Surprise Money Transfer:<br>A surprise amount will be sent to you on a random day when I get it! 💸✨</div>
                 <canvas id="scratchCanvas"></canvas>
             </div>
-            <div style="font-size: 0.7rem; color: var(--sky-blue); margin-top: 4px;">(Scratch foil above with finger/mouse!)</div>
         </div>
     </div>
 
@@ -621,486 +561,269 @@
     <div class="city-tabs">
         <button class="city-tab-btn active" onclick="switchCity('nairobi', this)">🏙️ Nairobi</button>
         <button class="city-tab-btn" onclick="switchCity('mombasa', this)">🌊 Mombasa</button>
-        <button class="city-tab-btn" onclick="switchCity('nakuru', this)">🏞️ Nakuru</button>
     </div>
 
-    <!-- NAIROBI -->
-    <div class="city-content active" id="city-nairobi" data-city="Nairobi">
-        <div class="subcategory-header">🧺 PICNICS</div>
+    <!-- NAIROBI CONTENT -->
+    <div class="city-content active" id="city-nairobi">
+        <div class="subcategory-header">🍽️ Fine Dining & Romantic Dinners</div>
         <div class="spots-grid">
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Karura Forest (Sigiria / KFEET Grounds)</div><div class="spot-desc">Well-maintained lawns under indigenous canopy trees, featuring nearby bike rentals, cafes, and clean facilities.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1511497584788-8767610419ea?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Oloolua Nature Trail (Karen)</div><div class="spot-desc">A secluded, serene forest clearing right alongside a flowing river and natural waterfall.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Nairobi Arboretum (Kileleshwa)</div><div class="spot-desc">Central, budget-friendly botanical lawns shaded by massive mature trees—ideal for a laid-back blanket setup.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-        </div>
-
-        <div class="subcategory-header">🎬 MOVIES</div>
-        <div class="spots-grid">
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Unseen Nairobi (Kilimani)</div><div class="spot-desc">An independent rooftop cinema featuring indie movies, vintage seating, and a breezy open-air bar.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Midnight Vibez (Silent Outdoor Cinema)</div><div class="spot-desc">Garden movie nights featuring wireless HD headphones, bonfires, and city views.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Century Cinemax (Sarit Centre IMAX)</div><div class="spot-desc">Premium 3D screen experience equipped with plush recliners for classic date nights.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-        </div>
-
-        <div class="subcategory-header">🏊 SWIMMING</div>
-        <div class="spots-grid">
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Maji Magic Aqua Park (Waterfront Karen)</div><div class="spot-desc">Open-water swimming, kayaking, and inflatable obstacle courses on a freshwater lake.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1582610116397-edb318620f90?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Trademark Hotel Rooftop Pool (Village Market)</div><div class="spot-desc">A stylish heated pool overlooking the diplomatic district, paired with craft cocktails.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Fairview Hotel Pool (Upper Hill)</div><div class="spot-desc">Quiet, temperature-controlled garden pool surrounded by lush landscaping away from city traffic.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-        </div>
-
-        <div class="subcategory-header">🥾 HIKING</div>
-        <div class="spots-grid">
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Ngong Hills Reserve</div><div class="spot-desc">Scenic 7-peak trail along the Great Rift Valley escarpment with constant breezes and ridge vistas.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">William Hill (Rift Valley Escarpment)</div><div class="spot-desc">A moderately challenging off-beat trek offering dramatic drops and views of Mt. Longonot.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Karura Forest Trail</div><div class="spot-desc">Smooth, well-marked shaded forest paths leading past bamboo groves and historic Mau Mau caves.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-        </div>
-
-        <div class="subcategory-header">🏡 STAYCATION AIRBNBS</div>
-        <div class="spots-grid">
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Tigoni Tea Estate A-Frame Cabin</div><div class="spot-desc">Cozy wooden A-frame set amidst rolling tea fields in Limuru, complete with fire pits.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Karen Eco-Treehouse</div><div class="spot-desc">Private wooden sanctuary tucked high in the trees, surrounded by lush forest and birdlife.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Kilimani Skyline Penthouse</div><div class="spot-desc">High-rise apartment with a private terrace, floor-to-ceiling windows, and city skyline views.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-        </div>
-
-        <div class="subcategory-header">🌿 NATURE WALKS</div>
-        <div class="spots-grid">
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1511497584788-8767610419ea?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Oloolua Nature Trail Loop</div><div class="spot-desc">A 5km walk through thick indigenous forest, riverbeds, and a cascading waterfall.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Giraffe Centre Eco-Trail</div><div class="spot-desc">1.5km sanctuary trail across Gogo River where you can spot warthogs and native flora.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Nairobi Safari Walk</div><div class="spot-desc">Raised wooden boardwalks providing close encounters with savannah and forest wildlife ecosystems.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-        </div>
-
-        <div class="subcategory-header">🎮 FUN GAMES</div>
-        <div class="spots-grid">
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Bao Box (Westlands)</div><div class="spot-desc">Interactive board game café with over 100 tabletop games, artisan cocktails, and comfort food.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">GP Karting (Lang'ata)</div><div class="spot-desc">Outdoor go-karting track perfect for friendly competitive racing.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Village Bowl & VR Arcade (Village Market)</div><div class="spot-desc">11-lane glowing bowling alley paired with virtual reality gaming booths.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card">
+                <img class="spot-img" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=500&q=80" alt="Spot">
+                <div class="spot-info">
+                    <div class="spot-title">Talisman Restaurant</div>
+                    <div class="spot-desc">Cozy, artistic ambient dining in Karen with world-class fusion cuisine.</div>
+                    <div class="priority-picker">
+                        <label>Rating:</label>
+                        <select class="spot-priority-select" onchange="updateItinerary()">
+                            <option value="0">Select Rating</option>
+                            <option value="10">10 / 10 (Must Visit!)</option>
+                            <option value="8">8 / 10 (Love it)</option>
+                            <option value="5">5 / 10 (Maybe)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- MOMBASA -->
-    <div class="city-content" id="city-mombasa" data-city="Mombasa">
-        <div class="subcategory-header">🧺 PICNICS</div>
+    <!-- MOMBASA CONTENT -->
+    <div class="city-content" id="city-mombasa">
+        <div class="subcategory-header">🏖️ Coastal Romance & Sunset Dinners</div>
         <div class="spots-grid">
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Mama Ngina Waterfront Park</div><div class="spot-desc">Scenic oceanfront promenade along the Kilindini Channel, ideal for watching ships sail by while enjoying local snacks.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Butterfly Pavilion (Bamburi)</div><div class="spot-desc">Serene eco-park surrounded by lush coastal flora, lily ponds, and shaded grassy picnic lawns.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Nguuni Nature Sanctuary</div><div class="spot-desc">Picnic under coconut palms while free-roaming giraffes and elands wander through during sunset.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-        </div>
-
-        <div class="subcategory-header">🎬 MOVIES</div>
-        <div class="spots-grid">
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Nyali Cinemax</div><div class="spot-desc">Coastal Kenya’s premiere digital cinema featuring plush seating, Dolby Surround sound, and the latest blockbusters.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Moonshine Beach Bar Outdoor Cinema</div><div class="spot-desc">Casual open-air night screenings right along the beachfront under the stars.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">City Mall Cinema (Nyali)</div><div class="spot-desc">Cozy boutique theater option conveniently located in Nyali's main shopping center.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-        </div>
-
-        <div class="subcategory-header">🏊 SWIMMING</div>
-        <div class="spots-grid">
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1582610116397-edb318620f90?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">EnglishPoint Marina Infinity Pool</div><div class="spot-desc">Jaw-dropping pool offering sweeping panoramic views of Old Town and the Indian Ocean.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">PrideInn Flamingo Beach Resort Pool</div><div class="spot-desc">Sprawling lagoon-style pool flanked by palm trees and private lounge beds.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Serena Beach Resort Pool</div><div class="spot-desc">Classic oceanfront pool framed by authentic Swahili architecture and beach views.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-        </div>
-
-        <div class="subcategory-header">🥾 HIKING</div>
-        <div class="spots-grid">
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Shedrick Falls Trail (Shimba Hills)</div><div class="spot-desc">Moderate rainforest hike through Shimba Hills Reserve ending at a cascading 25-meter waterfall.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Bamburi Forest Trail</div><div class="spot-desc">Shaded 10km coastal trek through reclaimed quarry ecosystems and baobab groves.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Mtwapa Creek Mangrove Trail</div><div class="spot-desc">Secluded coastal walk winding through dense tidal mangroves and estuary habitats.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-        </div>
-
-        <div class="subcategory-header">🏡 STAYCATION AIRBNBS</div>
-        <div class="spots-grid">
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Nyali Beachfront Penthouse</div><div class="spot-desc">High-rise luxury apartment featuring floor-to-ceiling glass doors opening directly to ocean breezes.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Shanzu Ocean Cottage</div><div class="spot-desc">Private Swahili-style cottage with open-air verandahs and private beach access.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">EnglishPoint Luxury Studio</div><div class="spot-desc">Sleek harbor-view studio steps away from fine dining and water sport rentals.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-        </div>
-
-        <div class="subcategory-header">🌿 NATURE WALKS</div>
-        <div class="spots-grid">
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Haller Park Nature Walk</div><div class="spot-desc">Shaded nature loop where you can feed giant Aldabra tortoises and giraffes up close.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Nguuni Sunset Walk</div><div class="spot-desc">Peaceful evening stroll through open woodland as herds gather near the watering hole.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1511497584788-8767610419ea?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Mamba Village Botanical Walk</div><div class="spot-desc">Relaxed walk through botanical gardens, crocodile habitats, and orchid displays.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-        </div>
-
-        <div class="subcategory-header">🎮 FUN GAMES</div>
-        <div class="spots-grid">
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Mombasa Go-Kart (Bamburi)</div><div class="spot-desc">High-speed outdoor track featuring twin karts, off-road buggies, and a sports bar.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Wild Waters Kenya (Nyali)</div><div class="spot-desc">Action-packed water park featuring massive slide towers and splash zones.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Nyali Strike Bowling Lounge</div><div class="spot-desc">Neon-lit bowling lanes equipped with arcade games and cocktail service.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card">
+                <img class="spot-img" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80" alt="Spot">
+                <div class="spot-info">
+                    <div class="spot-title">Ali Barbour's Cave</div>
+                    <div class="spot-desc">Dine inside an ancient natural coral cave under the open starlit sky.</div>
+                    <div class="priority-picker">
+                        <label>Rating:</label>
+                        <select class="spot-priority-select" onchange="updateItinerary()">
+                            <option value="0">Select Rating</option>
+                            <option value="10">10 / 10 (Must Visit!)</option>
+                            <option value="8">8 / 10 (Love it)</option>
+                            <option value="5">5 / 10 (Maybe)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- NAKURU -->
-    <div class="city-content" id="city-nakuru" data-city="Nakuru">
-        <div class="subcategory-header">🧺 PICNICS</div>
-        <div class="spots-grid">
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Lord Egerton Castle Grounds</div><div class="spot-desc">Rolling manicured lawns surrounding a grand 52-room historic castle.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Baboon Cliff Lookout (Lake Nakuru NP)</div><div class="spot-desc">High vantage point offering panoramic cliffside views of Lake Nakuru and flamingos.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Hyrax Hill Archaeological Site</div><div class="spot-desc">Peaceful grassy lawns set beneath shady acacia trees rich with historical charm.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-        </div>
-
-        <div class="subcategory-header">🎬 MOVIES</div>
-        <div class="spots-grid">
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Westside Mall Cinema</div><div class="spot-desc">Modern indoor screen hall in Nakuru’s flagship retail center.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Rift Valley Pop-Up Garden Cinema</div><div class="spot-desc">Outdoor movie screenings paired with cozy bonfires and lounge seating.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Sarova Woodlands Screening Lounge</div><div class="spot-desc">Intimate luxury cinema room available for private dates inside the hotel complex.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-        </div>
-
-        <div class="subcategory-header">🏊 SWIMMING</div>
-        <div class="spots-grid">
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1582610116397-edb318620f90?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Sarova Lion Hill Game Lodge Pool</div><div class="spot-desc">Heated outdoor pool looking out into the serene acacia forests of Lake Nakuru National Park.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Lake Nakuru Sopa Lodge Pool</div><div class="spot-desc">High-altitude infinity pool providing sweeping vistas of the Rift Valley.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Merica Hotel Pool</div><div class="spot-desc">City-center swimming pool paired with sun loungers and full poolside service.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-        </div>
-
-        <div class="subcategory-header">🥾 HIKING</div>
-        <div class="spots-grid">
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Menengai Crater Rim Trail</div><div class="spot-desc">Dramatic volcano hike leading along the edge of Africa's second-largest caldera.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Sleeping Warrior & Ugali Hill (Elmenteita)</div><div class="spot-desc">Scenic ridge trek offering breathtaking volcanic terrain views over Lake Elmenteita.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Mount Eburu Summit Trail</div><div class="spot-desc">Forested high-altitude trail featuring natural geothermal steam vents along the way.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-        </div>
-
-        <div class="subcategory-header">🏡 STAYCATION AIRBNBS</div>
-        <div class="spots-grid">
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Elmenteita Cliffside Eco-Cabin</div><div class="spot-desc">Rustic wooden cabin perched over Lake Elmenteita with private outdoor plunge tubs.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Menengai View Villa</div><div class="spot-desc">Modern architectural escape featuring wide glass walls overlooking the crater.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Greenpark Golf Villa</div><div class="spot-desc">Tranquil golf course villa set against Great Rift Valley backdrop views.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-        </div>
-
-        <div class="subcategory-header">🌿 NATURE WALKS</div>
-        <div class="spots-grid">
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Lake Elmenteita Shoreline Walk</div><div class="spot-desc">Peaceful lakeside walk surrounded by white pelicans and flamingos.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1511497584788-8767610419ea?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Makalia Falls Trail (Lake Nakuru NP)</div><div class="spot-desc">Shaded woodland trek along the river leading straight to a scenic waterfall drop.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Hyrax Hill Prehistoric Trail</div><div class="spot-desc">Gentle hilltop nature trail offering historic insight and clear views over Nakuru city.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-        </div>
-
-        <div class="subcategory-header">🎮 FUN GAMES</div>
-        <div class="spots-grid">
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Midriver Fun Park</div><div class="spot-desc">Activity park offering quad bikes, bumper cars, and outdoor team challenge courses.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Westside Mall Gaming Zone</div><div class="spot-desc">Interactive indoor arcade equipped with VR simulators and air hockey tables.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Crater Outdoor Go-Karting Track</div><div class="spot-desc">Outdoor racing track located on the outskirts of Nakuru town.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-        </div>
-    </div>
-
-    <div style="display: flex; gap: 15px; margin-top: 20px;">
+    <div style="display: flex; gap: 15px; margin-top: 25px;">
         <button class="btn-outline" onclick="goToStep(4)">Back</button>
-        <button class="btn-gold" onclick="submitWishlist()">Generate Master Schedule 💖</button>
+        <button class="btn-gold" onclick="goToStep(6)">Generate Itinerary 🗓️</button>
     </div>
 </div>
 
-<!-- STEP 6: DYNAMIC RANKED ITINERARY, SPINNER & EXPORTERS -->
+<!-- STEP 6: MASTER SCHEDULE -->
 <div class="screen-step" id="step6">
     <div class="itinerary-container">
-        <h2 style="font-family: 'Cinzel', serif; color: var(--dull-gold); text-align: center;">Our Master Date Schedule 🗓️</h2>
-        <p style="color: var(--sky-blue); font-size: 0.8rem; text-align: center;">Sorted by Tracy's top priority scores!</p>
-
-        <div class="itinerary-list" id="itineraryListContainer"></div>
-
-        <!-- SPONTANEOUS DATE NIGHT SPINNER WHEEL -->
-        <div class="spinner-section">
-            <h4 style="color: var(--dull-gold); font-family: 'Cinzel', serif;">🎰 Can't Decide? Spin the Date Wheel!</h4>
-            <canvas id="wheelCanvas" width="250" height="250"></canvas><br>
-            <button class="btn-gold" style="padding: 8px 20px; font-size: 0.8rem; margin-top: 10px;" onclick="spinWheel()">Spin Wheel 🎡</button>
+        <h2 style="font-family: 'Cinzel', serif; color: var(--dull-gold); text-align: center;">Our Selected Master Itinerary 🗓️</h2>
+        <div class="itinerary-list" id="itineraryList">
+            <p style="text-align: center; color: #8A8A8A; font-size: 0.9rem;">Select ratings in the wishlist above to generate your custom date schedule!</p>
         </div>
     </div>
 
-    <div style="display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; justify-content: center;">
-        <button class="btn-outline" onclick="goToStep(5)">Modify ✏️</button>
-        <button class="btn-gold" onclick="exportToWhatsApp()">Send to Paul via WhatsApp 📱</button>
-    </div>
-</div>
-
-<!-- PLAYLIST MODAL WITH INTERACTIVE PLAYLIST -->
-<div class="playlist-modal" id="playlistModal">
-    <div class="playlist-card-container">
-        <h3 style="color: var(--dull-gold); font-family: 'Cinzel', serif; text-align: center; margin-bottom: 5px;">Our Playlist 🎶</h3>
-        <p style="color: var(--sky-blue); font-size: 0.78rem; text-align: center; margin-bottom: 15px;">Tap any song to play it instantly!</p>
-        
-        <div class="song-item active-song" onclick="playPlaylistTrack(0)">
-            <div>
-                <div class="song-title">Kesho Kutwa <span style="font-size:0.7rem; color:var(--dull-gold);">(New Addition)</span></div>
-                <div class="song-artist">Kethan</div>
-            </div>
-            <div class="play-indicator" id="playInd-0">▶ Play</div>
-        </div>
-        <div class="song-item" onclick="playPlaylistTrack(1)">
-            <div>
-                <div class="song-title">Suzanna</div>
-                <div class="song-artist">Sauti Sol</div>
-            </div>
-            <div class="play-indicator" id="playInd-1">▶ Play</div>
-        </div>
-        <div class="song-item" onclick="playPlaylistTrack(2)">
-            <div>
-                <div class="song-title">Pombe Sigara</div>
-                <div class="song-artist">Nviiri the Storyteller</div>
-            </div>
-            <div class="play-indicator" id="playInd-2">▶ Play</div>
-        </div>
-        <div class="song-item" onclick="playPlaylistTrack(3)">
-            <div>
-                <div class="song-title">Lucy</div>
-                <div class="song-artist">Bensoul</div>
-            </div>
-            <div class="play-indicator" id="playInd-3">▶ Play</div>
-        </div>
-        <div class="song-item" onclick="playPlaylistTrack(4)">
-            <div>
-                <div class="song-title">Cherry Orange</div>
-                <div class="song-artist">Xenia Manasseh</div>
-            </div>
-            <div class="play-indicator" id="playInd-4">▶ Play</div>
-        </div>
-        <div class="song-item" onclick="playPlaylistTrack(5)">
-            <div>
-                <div class="song-title">Insecure</div>
-                <div class="song-artist">Bien</div>
-            </div>
-            <div class="play-indicator" id="playInd-5">▶ Play</div>
-        </div>
-
-        <div style="text-align: center; margin-top: 20px;">
-            <button class="btn-outline" onclick="togglePlaylistModal(false)">Close Playlist</button>
-        </div>
+    <div style="display: flex; gap: 15px; margin-top: 25px;">
+        <button class="btn-outline" onclick="goToStep(5)">Back to Wishlist</button>
     </div>
 </div>
 
 <!-- 49 MEMORY VAULT MODAL -->
 <div class="vault-modal" id="vaultModal">
-    <h3 style="color: var(--dull-gold); font-family: 'Cinzel', serif; margin-bottom: 5px;">49 Reasons Why I Love You 💎</h3>
-    <p style="color: var(--sky-blue); font-size: 0.8rem; margin-bottom: 15px;">Tap any number 1 to 49 to unlock its reason!</p>
-    <div class="vault-grid" id="vaultGridContainer"></div>
-    <button class="btn-outline" style="margin-top: 15px;" onclick="toggleVaultModal(false)">Close Vault</button>
+    <h2 style="font-family: 'Cinzel', serif; color: var(--dull-gold); margin-bottom: 5px;">49 Reasons Why I Love You 💖</h2>
+    <p style="color: var(--sky-blue); font-size: 0.8rem; margin-bottom: 20px;">Tap any number to reveal a reason!</p>
+    
+    <div class="vault-grid" id="vaultGrid"></div>
+
+    <button class="btn-outline" style="margin-top: 20px;" onclick="toggleVaultModal(false)">Close Vault</button>
 </div>
 
-<!-- INDIVIDUAL REASON POP-UP BOX -->
+<!-- REASON POPUP -->
 <div class="reason-popup" id="reasonPopup">
     <div class="reason-content-box">
-        <div class="reason-num-badge" id="popupReasonNum">REASON #1</div>
-        <div class="reason-text" id="popupReasonText">...</div>
-        <button class="btn-gold" style="padding: 8px 24px; font-size: 0.8rem;" onclick="closeReasonPopup()">Close Memory 💖</button>
+        <div class="reason-num-badge" id="popupNum">REASON #1</div>
+        <div class="reason-text" id="popupText">You are my whole world.</div>
+        <button class="btn-gold" onclick="closeReasonPopup()">Close</button>
     </div>
 </div>
 
 <script>
-    // --- 1. PLAYLIST TRACK DATA & AUDIO ENGINE ---
-    const playlistData = [
-        { title: "Kesho Kutwa", artist: "Kethan", src: "kethan-kesho-kutwa.mp3" },
-        { title: "Suzanna", artist: "Sauti Sol", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
-        { title: "Pombe Sigara", artist: "Nviiri the Storyteller", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },
-        { title: "Lucy", artist: "Bensoul", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" },
-        { title: "Cherry Orange", artist: "Xenia Manasseh", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" },
-        { title: "Insecure", artist: "Bien", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3" }
-    ];
-
-    let currentTrackIndex = 0;
-    let bgmPlaying = false;
-
-    function playPlaylistTrack(index) {
-        currentTrackIndex = index;
-        const track = playlistData[index];
-        const audio = document.getElementById('bgmAudio');
+    /* --- STEP NAVIGATION --- */
+    function goToStep(stepNum) {
+        document.querySelectorAll('.screen-step').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.nav-dot').forEach(d => d.classList.remove('active'));
         
-        audio.src = track.src;
-        audio.play().then(() => {
-            bgmPlaying = true;
-            document.getElementById('audioIcon').innerText = '⏸️';
-        }).catch(err => console.log("Audio play allowed on user interaction."));
+        document.getElementById(`step${stepNum}`).classList.add('active');
+        if(document.querySelectorAll('.nav-dot')[stepNum - 1]) {
+            document.querySelectorAll('.nav-dot')[stepNum - 1].classList.add('active');
+        }
 
-        document.getElementById('currentTrackLabel').innerText = `${track.artist} - ${track.title}`;
-
-        // Update UI highlights
-        document.querySelectorAll('.song-item').forEach((item, idx) => {
-            if (idx === index) {
-                item.classList.add('active-song');
-                document.getElementById(`playInd-${idx}`).innerText = '🔊 Playing';
-            } else {
-                item.classList.remove('active-song');
-                document.getElementById(`playInd-${idx}`).innerText = '▶ Play';
-            }
-        });
+        if(stepNum === 3) initScratchCard();
     }
+
+    /* --- BACKGROUND AUDIO TONE GENERATOR (WEB AUDIO API) --- */
+    let audioCtx = null;
+    let osc1 = null, osc2 = null, gainNode = null;
+    let isTonePlaying = false;
 
     function toggleAudio() {
-        const audio = document.getElementById('bgmAudio');
-        if (!bgmPlaying) {
-            audio.play();
-            bgmPlaying = true;
-            document.getElementById('audioIcon').innerText = '⏸️';
-            document.getElementById(`playInd-${currentTrackIndex}`).innerText = '🔊 Playing';
+        if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+
+        if (!isTonePlaying) {
+            osc1 = audioCtx.createOscillator();
+            osc2 = audioCtx.createOscillator();
+            gainNode = audioCtx.createGain();
+
+            osc1.type = 'sine';
+            osc1.frequency.setValueAtTime(220, audioCtx.currentTime); // A3 Warm Pitch
+            
+            osc2.type = 'sine';
+            osc2.frequency.setValueAtTime(330, audioCtx.currentTime); // E4 Harmonic
+
+            gainNode.gain.setValueAtTime(0.001, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.12, audioCtx.currentTime + 1.5);
+
+            osc1.connect(gainNode);
+            osc2.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            osc1.start();
+            osc2.start();
+            
+            isTonePlaying = true;
+            document.getElementById('audioIcon').textContent = '🔊';
+            document.getElementById('currentTrackLabel').textContent = 'Ambient Tone: On';
         } else {
-            audio.pause();
-            bgmPlaying = false;
-            document.getElementById('audioIcon').innerText = '🎵';
-            document.getElementById(`playInd-${currentTrackIndex}`).innerText = '▶ Play';
+            if (gainNode) {
+                gainNode.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.8);
+                setTimeout(() => {
+                    if (osc1) { osc1.stop(); osc1.disconnect(); }
+                    if (osc2) { osc2.stop(); osc2.disconnect(); }
+                    isTonePlaying = false;
+                }, 800);
+            } else {
+                isTonePlaying = false;
+            }
+            document.getElementById('audioIcon').textContent = '🔔';
+            document.getElementById('currentTrackLabel').textContent = 'Ambient Tone: Off';
         }
     }
 
-    // --- 2. UPDATED ALL 49 REASONS DATASET ---
-    const reasonsList = [
-        "The way your eyes light up when you talk about something you love.",
-        "How you remember the small, subtle details about my day.",
-        "The comforting sound of your laugh, especially when you lose control of it.",
-        "Your cozy, sleepy morning voice.",
-        "The warm, reassuring feeling of holding your hand.",
-        "How you turn routine, boring moments into fun memories.",
-        "The way you steal my hoodies and look a thousand times better in them than I ever could.",
-        "Your sense of humor that can lift my mood instantly.",
-        "The silly little dances you do when you are happy.",
-        "How you try and fail to hide your smile whenever you are attempting to stay mad at me.",
-        "Your deep empathy and how genuinely you care for others.",
-        "How you create a safe space where I can be my completely authentic self.",
-        "Your kindness, even during difficult or stressful moments.",
-        "Your passion and determination when working toward your goals.",
-        "Your endless patience with me when I need extra time or understanding.",
-        "The thoughtful gestures you do without needing a special occasion.",
-        "Your inner strength and quiet resilience when facing challenges.",
-        "Your honesty and willingness to be vulnerable with me.",
-        "The way you truly listen, making me feel fully heard and valued.",
-        "Your generous spirit toward the people around you.",
-        "How seamlessly we work together as a team.",
-        "The way you celebrate my achievements as if they were your own.",
-        "Your ability to calm my mind whenever life gets chaotic.",
-        "How you inspire me to grow without ever making me feel inadequate.",
-        "Your belief in me, especially during times I struggle to believe in myself.",
-        "Our effortless transition from deep philosophical talks to nonsensical banter.",
-        "The quiet comfort of simply sitting together in silence.",
-        "How you respect my individuality while building our life together.",
-        "Your maturity in working through misunderstandings with grace.",
-        "The unwavering reliability of your presence in my life.",
-        "Your distinct, charming taste in music, movies, and stories.",
-        "Our vault of inside jokes that nobody else in the world understands.",
-        "The way you unabashedly sing along to your favorite songs around the house.",
-        "How cozy and fun our movie nights and indoor chill sessions always are.",
-        "How perfect it feels to cuddle up with you after a long day.",
-        "Remembering my specific preferences without me ever having to ask.",
-        "The random, sweet text messages you send out of nowhere.",
-        "All your unique quirks that make you uniquely you.",
-        "The immediate stress relief that comes from one of your hugs.",
-        "How you make lazy weekends and simple stay-in days feel so special.",
-        "The excitement I still feel every single time I see you.",
-        "The way life feels richer, brighter, and clearer with you in it.",
-        "How naturally you turn any physical space into a warm home.",
-        "Looking forward to building a long, happy future by your side.",
-        "The natural, effortless beauty you carry every day.",
-        "The warmth of your smile that lights up an entire room.",
-        "How loving you makes me want to be a better person.",
-        "Your fierce loyalty and high standard of character.",
-        "Simply because choosing you is the easiest, best decision I make every day."
-    ];
-
-    // --- 3. PARTICLES ENGINE ---
-    const pCanvas = document.getElementById('particleCanvas');
-    const pCtx = pCanvas.getContext('2d');
-    let particles = [];
-
-    function initParticles() {
-        pCanvas.width = window.innerWidth;
-        pCanvas.height = window.innerHeight;
-        particles = [];
-        for (let i = 0; i < 50; i++) {
-            particles.push({
-                x: Math.random() * pCanvas.width,
-                y: Math.random() * pCanvas.height,
-                size: Math.random() * 3 + 1,
-                speedY: Math.random() * 0.8 + 0.2,
-                opacity: Math.random() * 0.7 + 0.3
-            });
-        }
-    }
-
-    function animateParticles() {
-        pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
-        pCtx.fillStyle = "rgba(197, 160, 89, 0.6)";
-        particles.forEach(p => {
-            p.y -= p.speedY;
-            if (p.y < 0) p.y = pCanvas.height;
-            pCtx.beginPath();
-            pCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-            pCtx.fill();
-        });
-        requestAnimationFrame(animateParticles);
-    }
-    window.addEventListener('resize', initParticles);
-    initParticles(); animateParticles();
-
-    // --- 4. STEP NAVIGATION ---
-    function goToStep(stepNum) {
-        document.querySelectorAll('.screen-step').forEach(el => el.classList.remove('active'));
-        document.querySelectorAll('.nav-dot').forEach(el => el.classList.remove('active'));
-
-        document.getElementById(`step${stepNum}`).classList.add('active');
-        document.querySelectorAll('.nav-dot')[stepNum - 1].classList.add('active');
-        window.scrollTo(0,0);
-    }
-
-    function switchCity(cityName, btn) {
-        document.querySelectorAll('.city-content').forEach(el => el.classList.remove('active'));
-        document.querySelectorAll('.city-tab-btn').forEach(el => el.classList.remove('active'));
-
-        document.getElementById(`city-${cityName}`).classList.add('active');
-        btn.classList.add('active');
-    }
-
-    function handlePriorityChange(selectEl) {
-        const card = selectEl.closest('.spot-card');
-        if (parseInt(selectEl.value) > 0) card.classList.add('has-priority');
-        else card.classList.remove('has-priority');
-    }
-
-    // --- 5. DIGITAL SCRATCH CARD ---
-    const sCanvas = document.getElementById('scratchCanvas');
-    const sCtx = sCanvas.getContext('2d');
+    /* --- SCRATCH CARD LOGIC --- */
+    let scratchInitialized = false;
     function initScratchCard() {
-        sCanvas.width = sCanvas.offsetWidth;
-        sCanvas.height = sCanvas.offsetHeight;
-        sCtx.fillStyle = '#C5A059';
-        sCtx.fillRect(0, 0, sCanvas.width, sCanvas.height);
-        sCtx.fillStyle = '#111';
-        sCtx.font = 'bold 12px sans-serif';
-        sCtx.textAlign = 'center';
-        sCtx.fillText('✨ SCRATCH WITH FINGER ✨', sCanvas.width / 2, sCanvas.height / 2 + 4);
-    }
-    let isScratching = false;
-    function scratch(e) {
-        if (!isScratching) return;
-        const rect = sCanvas.getBoundingClientRect();
-        const x = (e.clientX || e.touches[0].clientX) - rect.left;
-        const y = (e.clientY || e.touches[0].clientY) - rect.top;
-        sCtx.globalCompositeOperation = 'destination-out';
-        sCtx.beginPath();
-        sCtx.arc(x, y, 18, 0, Math.PI * 2);
-        sCtx.fill();
-    }
-    sCanvas.addEventListener('mousedown', () => isScratching = true);
-    sCanvas.addEventListener('mouseup', () => isScratching = false);
-    sCanvas.addEventListener('mousemove', scratch);
-    sCanvas.addEventListener('touchstart', () => isScratching = true);
-    sCanvas.addEventListener('touchend', () => isScratching = false);
-    sCanvas.addEventListener('touchmove', scratch);
-    setTimeout(initScratchCard, 500);
+        if(scratchInitialized) return;
+        scratchInitialized = true;
+        const canvas = document.getElementById('scratchCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
 
-    // --- 6. MODALS ---
-    function togglePlaylistModal(show) {
-        document.getElementById('playlistModal').classList.toggle('active', show);
+        ctx.fillStyle = '#C5A059';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.font = 'bold 14px sans-serif';
+        ctx.fillStyle = '#000000';
+        ctx.textAlign = 'center';
+        ctx.fillText('Scratch Here!', canvas.width / 2, canvas.height / 2 + 5);
+
+        let isDrawing = false;
+        function scratch(e) {
+            if(!isDrawing) return;
+            const rect = canvas.getBoundingClientRect();
+            const x = (e.clientX || e.touches[0].clientX) - rect.left;
+            const y = (e.clientY || e.touches[0].clientY) - rect.top;
+
+            ctx.globalCompositeOperation = 'destination-out';
+            ctx.beginPath();
+            ctx.arc(x, y, 18, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        canvas.addEventListener('mousedown', () => isDrawing = true);
+        canvas.addEventListener('mouseup', () => isDrawing = false);
+        canvas.addEventListener('mousemove', scratch);
+
+        canvas.addEventListener('touchstart', () => isDrawing = true);
+        canvas.addEventListener('touchend', () => isDrawing = false);
+        canvas.addEventListener('touchmove', scratch);
     }
+
+    /* --- CITY TABS --- */
+    function switchCity(cityName, btn) {
+        document.querySelectorAll('.city-tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.city-content').forEach(c => c.classList.remove('active'));
+
+        btn.classList.add('active');
+        document.getElementById(`city-${cityName}`).classList.add('active');
+    }
+
+    /* --- ITINERARY UPDATER --- */
+    function updateItinerary() {
+        const list = document.getElementById('itineraryList');
+        list.innerHTML = '';
+        
+        const selected = document.querySelectorAll('.spot-priority-select');
+        let count = 0;
+
+        selected.forEach(sel => {
+            if(sel.value > 0) {
+                count++;
+                const card = sel.closest('.spot-card');
+                const title = card.querySelector('.spot-title').innerText;
+                const img = card.querySelector('.spot-img').src;
+
+                const item = document.createElement('div');
+                item.className = 'itinerary-item';
+                item.innerHTML = `
+                    <div class="itinerary-badge">${count}</div>
+                    <img class="itinerary-img" src="${img}" alt="Spot">
+                    <div class="itinerary-details">
+                        <div class="itinerary-spot-title">${title}</div>
+                        <div class="itinerary-city-tag">Rating: ${sel.value}/10</div>
+                    </div>
+                `;
+                list.appendChild(item);
+            }
+        });
+
+        if(count === 0) {
+            list.innerHTML = '<p style="text-align: center; color: #8A8A8A; font-size: 0.9rem;">Select ratings in the wishlist above to generate your custom date schedule!</p>';
+        }
+    }
+
+    /* --- 49 REASONS VAULT LOGIC --- */
+    const reasons = Array.from({length: 49}, (_, i) => `Reason #${i+1}: You bring endless joy, beauty, and warmth into my life every single day! ❤️`);
 
     function toggleVaultModal(show) {
         const modal = document.getElementById('vaultModal');
-        modal.classList.toggle('active', show);
-        if (show && document.getElementById('vaultGridContainer').children.length === 0) {
-            const container = document.getElementById('vaultGridContainer');
-            for (let i = 1; i <= 49; i++) {
-                const btn = document.createElement('div');
-                btn.className = 'vault-card';
-                btn.innerText = i;
-                btn.onclick = () => openReasonPopup(i);
-                container.appendChild(btn);
+        if(show) {
+            modal.classList.add('active');
+            const grid = document.getElementById('vaultGrid');
+            if(grid.children.length === 0) {
+                for(let i = 1; i <= 49; i++) {
+                    const card = document.createElement('div');
+                    card.className = 'vault-card';
+                    card.innerText = i;
+                    card.onclick = () => showReason(i);
+                    grid.appendChild(card);
+                }
             }
+        } else {
+            modal.classList.remove('active');
         }
     }
 
-    function openReasonPopup(index) {
-        document.getElementById('popupReasonNum').innerText = `REASON #${index} OF 49`;
-        document.getElementById('popupReasonText').innerText = reasonsList[index - 1];
+    function showReason(num) {
+        document.getElementById('popupNum').innerText = `REASON #${num}`;
+        document.getElementById('popupText').innerText = reasons[num - 1];
         document.getElementById('reasonPopup').classList.add('active');
     }
 
@@ -1108,95 +831,40 @@
         document.getElementById('reasonPopup').classList.remove('active');
     }
 
-    // --- 7. WISHLIST SUBMISSION & MASTER SCHEDULE ---
-    let masterSelectedSpots = [];
-    function submitWishlist() {
-        const cards = document.querySelectorAll('.spot-card');
-        masterSelectedSpots = [];
+    /* --- BACKGROUND PARTICLES CANVAS --- */
+    const canvas = document.getElementById('particleCanvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
 
-        cards.forEach(card => {
-            const score = parseInt(card.querySelector('.spot-priority-select').value);
-            if (score > 0) {
-                masterSelectedSpots.push({
-                    title: card.querySelector('.spot-title').innerText,
-                    imgSrc: card.querySelector('.spot-img').src,
-                    city: card.closest('.city-content').getAttribute('data-city'),
-                    score
-                });
-            }
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    for(let i = 0; i < 40; i++) {
+        particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            r: Math.random() * 2 + 1,
+            d: Math.random() * 1 + 0.5
         });
-
-        if (masterSelectedSpots.length === 0) {
-            alert("Please give a rating to at least one spot!");
-            return;
-        }
-
-        masterSelectedSpots.sort((a, b) => b.score - a.score);
-        const container = document.getElementById('itineraryListContainer');
-        container.innerHTML = '';
-
-        masterSelectedSpots.forEach((spot, index) => {
-            const calUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('Date Night: ' + spot.title)}&details=${encodeURIComponent('Anniversary Date with Tracy!')}`;
-            container.innerHTML += `
-                <div class="itinerary-item">
-                    <div class="itinerary-badge">#${index + 1}</div>
-                    <img src="${spot.imgSrc}" class="itinerary-img" alt="${spot.title}">
-                    <div class="itinerary-details">
-                        <div class="itinerary-spot-title">${spot.title}</div>
-                        <div class="itinerary-city-tag">📍 ${spot.city} • Rating: ${spot.score}/10</div>
-                    </div>
-                    <div class="itinerary-actions">
-                        <a href="${calUrl}" target="_blank" class="cal-btn">📅 Add to Cal</a>
-                    </div>
-                </div>
-            `;
-        });
-
-        drawWheel();
-        goToStep(6);
     }
 
-    // --- 8. SPINNER WHEEL ENGINE ---
-    function drawWheel() {
-        const canvas = document.getElementById('wheelCanvas');
-        const ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, 250, 250);
-        const items = masterSelectedSpots.length ? masterSelectedSpots : [{title: 'Karura Forest'}, {title: 'Unseen Cinema'}, {title: 'Marina Pool'}];
-        const sliceAngle = (Math.PI * 2) / items.length;
-
-        items.forEach((item, i) => {
+    function drawParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = 'rgba(197, 160, 89, 0.3)';
+        particles.forEach(p => {
             ctx.beginPath();
-            ctx.fillStyle = i % 2 === 0 ? '#C5A059' : '#1C1823';
-            ctx.moveTo(125, 125);
-            ctx.arc(125, 125, 110, sliceAngle * i, sliceAngle * (i + 1));
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
             ctx.fill();
-
-            ctx.save();
-            ctx.translate(125, 125);
-            ctx.rotate(sliceAngle * i + sliceAngle / 2);
-            ctx.fillStyle = i % 2 === 0 ? '#000' : '#FFF';
-            ctx.font = 'bold 10px sans-serif';
-            ctx.fillText(item.title.substring(0, 12), 40, 4);
-            ctx.restore();
+            p.y -= p.d;
+            if(p.y < 0) p.y = canvas.height;
         });
+        requestAnimationFrame(drawParticles);
     }
-
-    function spinWheel() {
-        const canvas = document.getElementById('wheelCanvas');
-        canvas.style.transition = 'transform 3s cubic-bezier(0.15, 0.9, 0.15, 1)';
-        const rot = 1440 + Math.random() * 360;
-        canvas.style.transform = `rotate(${rot}deg)`;
-        setTimeout(() => alert("🎉 The Date Night Wheel Picked a Winner! Get ready!"), 3200);
-    }
-
-    // --- 9. WHATSAPP EXPORTER ---
-    function exportToWhatsApp() {
-        if (!masterSelectedSpots.length) return;
-        let text = "Hey baby! 👑 Here are my top choice date spots from our 49 Months site:\n\n";
-        masterSelectedSpots.forEach((s, i) => text += `${i+1}. ${s.title} (${s.city}) - Rating: ${s.score}/10\n`);
-        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
-    }
+    drawParticles();
 </script>
-
 </body>
 </html>
