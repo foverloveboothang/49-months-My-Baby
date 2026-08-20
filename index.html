@@ -3,22 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>49 Months • Our Chapter 5</title>
+    <title>49 Months • Tracy & Paul</title>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@500;700;900&family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@500;700;800;900&family=Playfair+Display:ital,wght@0,600;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-dark: #121013;
-            --card-dark: #1A171C;
+            --bg-dark: #0F0D10;
+            --card-dark: #17141A;
             --dull-gold: #C5A059;
             --gold-light: #E5C378;
             --sky-blue: #89CFF0;
-            --sky-blue-muted: #385E72;
             --soft-pink: #F7CAD0;
             --beige: #F5EBE0;
-            --border-dark: #2A252D;
-            --shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            --border-dark: #27222B;
+            --shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -34,12 +33,12 @@
             align-items: center;
         }
 
-        /* --- FLOATING PROGRESS NAV --- */
+        /* --- FLOATING NAV --- */
         .nav-header {
             position: fixed;
             top: 15px;
             z-index: 100;
-            background: rgba(26, 23, 28, 0.85);
+            background: rgba(23, 20, 26, 0.9);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(197, 160, 89, 0.3);
             padding: 8px 20px;
@@ -47,14 +46,14 @@
             display: flex;
             gap: 12px;
             align-items: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
         }
 
         .nav-dot {
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: #332D36;
+            background: #2D2733;
             transition: 0.4s;
             cursor: pointer;
         }
@@ -65,13 +64,13 @@
             transform: scale(1.3);
         }
 
-        /* --- SCREEN CONTAINER --- */
+        /* --- SCREEN STEP CONTAINER --- */
         .screen-step {
             display: none;
             width: 100vw;
             min-height: 100vh;
-            padding: 90px 20px 40px;
-            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            padding: 80px 20px 40px;
+            animation: fadeIn 0.5s ease-in-out forwards;
         }
 
         .screen-step.active {
@@ -81,43 +80,45 @@
             justify-content: center;
         }
 
-        /* --- STEP 1: COVER --- */
-        .cover-artsy-badge {
-            width: 130px;
-            height: 130px;
+        /* --- STEP 1: COVER CLOCK BADGE --- */
+        .clock-badge {
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             border: 2px dashed var(--dull-gold);
+            background: #141216;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin-bottom: 25px;
-            background: rgba(197, 160, 89, 0.05);
             position: relative;
+            margin-bottom: 25px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8), 0 0 15px rgba(197, 160, 89, 0.2);
         }
 
-        .cover-artsy-badge::after {
+        .clock-badge::before {
             content: '';
             position: absolute;
             inset: -8px;
             border: 1px solid var(--sky-blue);
             border-radius: 50%;
-            opacity: 0.4;
+            opacity: 0.35;
         }
 
-        .badge-num {
+        .clock-num {
             font-family: 'Cinzel', serif;
-            font-size: 2.8rem;
+            font-size: 3.2rem;
             font-weight: 900;
             color: var(--dull-gold);
             line-height: 1;
         }
 
-        .badge-sub {
-            font-size: 0.65rem;
-            letter-spacing: 2px;
+        .clock-sub {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
             color: var(--sky-blue);
             text-transform: uppercase;
+            margin-top: 4px;
         }
 
         .hero-title {
@@ -129,14 +130,13 @@
             -webkit-text-fill-color: transparent;
             margin-bottom: 15px;
             font-weight: 800;
-            letter-spacing: 1px;
         }
 
         .hero-sub {
             color: var(--sky-blue);
             font-size: 1.05rem;
             text-align: center;
-            max-width: 550px;
+            max-width: 600px;
             line-height: 1.6;
             margin-bottom: 35px;
         }
@@ -177,40 +177,47 @@
             color: var(--dull-gold);
         }
 
-        /* --- STEP 2: FULLSCREEN FLOWER DISPLAY --- */
-        .flower-fullscreen-card {
+        /* --- STEP 2: FLOWERS --- */
+        .flower-heading {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.4rem, 3.5vw, 2.4rem);
+            color: var(--dull-gold);
+            letter-spacing: 3px;
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .flower-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
             width: 100%;
-            max-width: 800px;
-            height: 65vh;
-            border-radius: 24px;
+            max-width: 1000px;
+            margin-bottom: 25px;
+        }
+
+        .flower-card {
+            height: 400px;
+            border-radius: 20px;
             overflow: hidden;
             position: relative;
             border: 1px solid var(--dull-gold);
             box-shadow: var(--shadow);
-            margin-bottom: 25px;
         }
 
-        .flower-fullscreen-card img {
+        .flower-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.85) contrast(1.1);
         }
 
-        .flower-overlay {
-            position: absolute;
-            bottom: 0;
-            inset-x: 0;
-            background: linear-gradient(to top, rgba(18, 16, 19, 0.95), transparent);
-            padding: 40px 25px 20px;
-            text-align: center;
-        }
-
-        /* --- STEP 3: LEGIT GOLD & DARK CERTIFICATE --- */
+        /* --- STEP 3: CERTIFICATE --- */
         .cert-container {
             width: 100%;
             max-width: 850px;
-            background: #0D0F12;
+            background: #0B0A0C;
             border: 3px solid var(--dull-gold);
             padding: 40px 30px;
             position: relative;
@@ -218,18 +225,15 @@
             overflow: hidden;
         }
 
-        /* Geometric Angular Gold Accents Inspired by Design */
         .cert-corner-tl {
             position: absolute; top: 0; left: 0;
-            width: 120px; height: 120px;
+            width: 100px; height: 100px;
             background: linear-gradient(135deg, var(--dull-gold) 50%, transparent 50%);
-            opacity: 0.8;
         }
         .cert-corner-br {
             position: absolute; bottom: 0; right: 0;
-            width: 120px; height: 120px;
+            width: 100px; height: 100px;
             background: linear-gradient(-45deg, var(--dull-gold) 50%, transparent 50%);
-            opacity: 0.8;
         }
 
         .cert-inner {
@@ -248,133 +252,156 @@
             font-weight: 900;
         }
 
-        .cert-title-sub {
-            font-size: 0.85rem;
-            letter-spacing: 5px;
-            color: var(--sky-blue);
-            text-transform: uppercase;
-            margin-bottom: 25px;
-        }
-
         .cert-recipient-name {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
             color: var(--beige);
             font-style: italic;
             margin: 15px 0;
             text-shadow: 0 0 10px rgba(255,255,255,0.2);
         }
 
-        .cert-body-text {
-            font-size: 0.95rem;
-            color: #A098A6;
-            max-width: 580px;
-            margin: 0 auto 30px;
-            line-height: 1.7;
-        }
-
         .cert-signatures {
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
-            max-width: 600px;
-            margin: 0 auto;
+            max-width: 650px;
+            margin: 20px auto 0;
             padding-top: 20px;
             border-top: 1px solid rgba(197, 160, 89, 0.2);
         }
 
-        .sig-block { text-align: center; }
         .sig-font {
             font-family: 'Alex Brush', cursive;
             font-size: 2.2rem;
             color: var(--dull-gold);
         }
 
-        .gold-seal-badge {
-            width: 75px; height: 75px;
-            background: radial-gradient(circle, var(--gold-light), var(--dull-gold));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #000;
-            font-family: 'Cinzel', serif;
-            font-weight: 900;
-            font-size: 0.75rem;
-            box-shadow: 0 0 20px rgba(197, 160, 89, 0.5);
-            border: 2px dashed #000;
-            text-align: center;
-        }
-
-        /* --- STEP 4: BLACK PAPER WASHI TAPE LETTER --- */
+        /* --- STEP 4: WIDE BLACK PAPER LETTER --- */
         .black-paper-card {
-            background: #141416;
+            background: #121214;
             width: 100%;
-            max-width: 680px;
-            padding: 45px 30px;
-            border-radius: 4px;
+            max-width: 900px; /* WIDER LAYOUT TO AVOID EXCESS SCROLLING */
+            padding: 50px 40px;
+            border-radius: 6px;
             box-shadow: var(--shadow);
             position: relative;
             border: 1px solid #222226;
         }
 
-        /* Gold Washi Tape Styling */
         .washi-tape-tl {
-            position: absolute; top: -12px; left: -20px; width: 100px; height: 30px;
-            background: rgba(197, 160, 89, 0.65);
-            transform: rotate(-20deg);
-            box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+            position: absolute; top: -12px; left: -20px; width: 110px; height: 32px;
+            background: rgba(197, 160, 89, 0.7);
+            transform: rotate(-18deg);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.5);
             border-left: 2px dashed rgba(255,255,255,0.4);
             border-right: 2px dashed rgba(255,255,255,0.4);
         }
+
         .washi-tape-tr {
-            position: absolute; top: -12px; right: -20px; width: 100px; height: 30px;
-            background: rgba(137, 207, 240, 0.5);
-            transform: rotate(20deg);
-            box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+            position: absolute; top: -12px; right: -20px; width: 110px; height: 32px;
+            background: rgba(137, 207, 240, 0.6);
+            transform: rotate(18deg);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.5);
             border-left: 2px dashed rgba(255,255,255,0.4);
             border-right: 2px dashed rgba(255,255,255,0.4);
         }
 
         .white-ink-text {
             font-family: 'Alex Brush', cursive;
-            font-size: clamp(1.8rem, 3.5vw, 2.2rem);
+            font-size: clamp(1.8rem, 3vw, 2.2rem);
             color: #FFFFFF;
-            line-height: 1.6;
-            text-shadow: 0 0 2px rgba(255,255,255,0.6);
+            line-height: 1.65;
+            text-shadow: 0 0 2px rgba(255,255,255,0.7);
         }
 
-        /* --- STEP 5: CATEGORIZED DATE QUESTIONNAIRE --- */
-        .date-section-container {
-            width: 100%;
-            max-width: 850px;
-            max-height: 65vh;
-            overflow-y: auto;
-            padding-right: 8px;
+        .kiss-seal-container {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
         }
 
-        .category-header {
-            font-family: 'Cinzel', serif;
-            color: var(--dull-gold);
-            font-size: 1.2rem;
-            margin: 25px 0 12px;
+        .kiss-mark {
+            width: 75px;
+            height: 75px;
+            background: radial-gradient(circle, #D62828 40%, transparent 70%);
+            border-radius: 50%;
             display: flex;
             align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            transform: rotate(-12deg);
+            filter: drop-shadow(0 0 8px rgba(214, 40, 40, 0.6));
+        }
+
+        .kiss-sub {
+            font-size: 0.75rem;
+            color: var(--soft-pink);
+            letter-spacing: 1px;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        /* --- STEP 5: CITY TABBED DATE QUESTIONNAIRE --- */
+        .city-tabs {
+            display: flex;
             gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .city-tab-btn {
+            background: var(--card-dark);
+            border: 1px solid var(--border-dark);
+            color: var(--beige);
+            padding: 10px 24px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .city-tab-btn.active, .city-tab-btn:hover {
+            background: var(--dull-gold);
+            color: #000;
+            border-color: var(--dull-gold);
+        }
+
+        .city-content {
+            display: none;
+            width: 100%;
+            max-width: 950px;
+            max-height: 60vh;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .city-content.active {
+            display: block;
+        }
+
+        .subcategory-header {
+            font-family: 'Cinzel', serif;
+            color: var(--dull-gold);
+            font-size: 1.15rem;
+            margin: 25px 0 15px;
             border-bottom: 1px solid var(--border-dark);
             padding-bottom: 6px;
         }
 
-        .category-grid {
+        .spots-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 16px;
         }
 
         .spot-card {
             background: var(--card-dark);
             border: 1px solid var(--border-dark);
-            border-radius: 16px;
+            border-radius: 14px;
             overflow: hidden;
             cursor: pointer;
             transition: 0.3s;
@@ -384,7 +411,7 @@
         .spot-card:hover, .spot-card.selected {
             border-color: var(--dull-gold);
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(197, 160, 89, 0.2);
+            box-shadow: 0 8px 20px rgba(197, 160, 89, 0.25);
         }
 
         .spot-card.selected::after {
@@ -419,14 +446,7 @@
         .spot-desc {
             font-size: 0.78rem;
             color: #9A929E;
-            line-height: 1.3;
-        }
-
-        .spot-priority {
-            margin-top: 8px;
-            font-size: 0.7rem;
-            color: var(--sky-blue);
-            font-weight: 600;
+            line-height: 1.35;
         }
 
         @keyframes fadeIn {
@@ -437,7 +457,7 @@
 </head>
 <body>
 
-<!-- FLOATING PROGRESS DOTS -->
+<!-- NAVIGATION DOTS -->
 <div class="nav-header">
     <div class="nav-dot active" onclick="goToStep(1)"></div>
     <div class="nav-dot" onclick="goToStep(2)"></div>
@@ -448,27 +468,27 @@
 
 <!-- STEP 1: COVER -->
 <div class="screen-step active" id="step1">
-    <div class="cover-artsy-badge">
-        <span class="badge-num">49</span>
-        <span class="badge-sub">MONTHS</span>
+    <div class="clock-badge">
+        <span class="clock-num">49</span>
+        <span class="clock-sub">MONTHS</span>
     </div>
     <h1 class="hero-title">Happy 49th Month Anniversary</h1>
     <p class="hero-sub">
-        Welcome to the opening chapter of our 5th year together, my queen 👑. A dark luxury & artsy celebration designed exclusively for you.
+        49 months of endless love, growth, and priceless memories. Welcome to the beginning of our 5th chapter together, my love 👑.
     </p>
-    <button class="btn-gold" onclick="goToStep(2)">Unveil Flowers 🌹</button>
+    <button class="btn-gold" onclick="goToStep(2)">Unveil Fresh Flowers 🌹</button>
 </div>
 
-<!-- STEP 2: FULLSCREEN FLOWER PAGE -->
+<!-- STEP 2: FLOWERS -->
 <div class="screen-step" id="step2">
-    <h2 style="font-family: 'Cinzel', serif; color: var(--dull-gold); margin-bottom: 15px; text-align: center;">Fresh Red Roses & White Lilies 🌹🪷</h2>
+    <h1 class="flower-heading">FRESH RED ROSES & WHITE LILIES 🌹🪷</h1>
     
-    <div class="flower-fullscreen-card">
-        <img src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=1200&q=80" alt="Fresh Red Roses and Lilies">
-        <div class="flower-overlay">
-            <p style="font-style: italic; color: var(--beige); font-size: 1.05rem;">
-                "Rich red roses for deep passion, and white lilies for pure grace—just for you on month 49."
-            </p>
+    <div class="flower-gallery">
+        <div class="flower-card">
+            <img src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=800&q=80" alt="Fresh Red Roses Bouquet">
+        </div>
+        <div class="flower-card">
+            <img src="https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&w=800&q=80" alt="Fresh White Lilies and Pink Bouquet">
         </div>
     </div>
 
@@ -478,7 +498,7 @@
     </div>
 </div>
 
-<!-- STEP 3: LEGIT CERTIFICATE -->
+<!-- STEP 3: CERTIFICATE -->
 <div class="screen-step" id="step3">
     <div class="cert-container">
         <div class="cert-corner-tl"></div>
@@ -486,22 +506,22 @@
 
         <div class="cert-inner">
             <div class="cert-title-main">CERTIFICATE</div>
-            <div class="cert-title-sub">OF SUPREME DEVOTION & BEAUTY</div>
+            <div style="font-size: 0.8rem; letter-spacing: 4px; color: var(--sky-blue); margin-bottom: 20px;">OF SUPREME DEVOTION & BEAUTY</div>
 
-            <p style="font-size: 0.8rem; letter-spacing: 2px; color: var(--dull-gold); text-transform: uppercase;">PROUDLY PRESENTED TO</p>
-            <div class="cert-recipient-name">The Best Girlfriend in the Universe 👑</div>
+            <p style="font-size: 0.75rem; letter-spacing: 2px; color: var(--dull-gold); text-transform: uppercase;">PROUDLY PRESENTED TO</p>
+            <div class="cert-recipient-name">Tracy Nasimiyu Kwoba</div>
 
-            <p class="cert-body-text">
+            <p style="font-size: 0.9rem; color: #A098A6; max-width: 600px; margin: 0 auto 25px; line-height: 1.6;">
                 For completing <strong>49 glorious months (1,491 days)</strong> of unmatched loyalty, breathtaking beauty, and being the ultimate dream partner as we enter our 5th year together.
             </p>
 
             <div class="cert-signatures">
-                <div class="sig-block">
+                <div style="text-align: center;">
                     <div class="sig-font">Paul Ondieki Oara</div>
                     <div style="font-size: 0.7rem; color: var(--dull-gold); letter-spacing: 1px;">AUTHORIZED SIGNATURE (P.O.O)</div>
                 </div>
 
-                <div class="gold-seal-badge">
+                <div style="width: 70px; height: 70px; background: radial-gradient(circle, var(--gold-light), var(--dull-gold)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; font-family: 'Cinzel', serif; font-weight: 900; font-size: 0.7rem; border: 2px dashed #000; text-align: center;">
                     SEAL OF<br>LOVE
                 </div>
             </div>
@@ -514,7 +534,7 @@
     </div>
 </div>
 
-<!-- STEP 4: BLACK PAPER HANDWRITTEN LETTER -->
+<!-- STEP 4: WIDE BLACK PAPER LETTER WITH KISS SEAL -->
 <div class="screen-step" id="step4">
     <div class="black-paper-card">
         <div class="washi-tape-tl"></div>
@@ -527,6 +547,12 @@
             It’s been a tough year for both of us but we have come out of half of it being even more in love than we began this journey baby 📈💕. I want to celebrate this anniversary to let you know you're my queen and my leash and your wish is my command baby 👑⛓️. I love you so much my baby!<br><br>
             Happy 49th month anniversary! ✨
         </p>
+
+        <!-- SEAL OF KISSES OF LOVE SIGN-OFF -->
+        <div class="kiss-seal-container">
+            <div class="kiss-mark">💋</div>
+            <div class="kiss-sub">Sealed with my lips & eternal love • Paul</div>
+        </div>
     </div>
 
     <div style="display: flex; gap: 15px; margin-top: 25px;">
@@ -535,126 +561,174 @@
     </div>
 </div>
 
-<!-- STEP 5: CATEGORIZED DATE QUESTIONNAIRE -->
+<!-- STEP 5: CATEGORIZED DATE QUESTIONNAIRE WITH CITIES -->
 <div class="screen-step" id="step5">
-    <h2 style="font-family: 'Cinzel', serif; color: var(--dull-gold); text-align: center;">Post-Embu Date Ideas Wishlist 📍</h2>
-    <p style="color: var(--sky-blue); font-size: 0.85rem; margin-bottom: 15px; text-align: center;">
-        Select your priority date spots across Nairobi, Mombasa, and Nakuru after your 1-year internship!
+    <h2 style="font-family: 'Cinzel', serif; color: var(--dull-gold); text-align: center;">Post-Embu Date Wishlist 📍</h2>
+    <p style="color: var(--sky-blue); font-size: 0.85rem; margin-bottom: 20px; text-align: center;">
+        Select your priority date spots across Nairobi, Mombasa, and Nakuru after your internship!
     </p>
 
-    <div class="date-section-container">
+    <!-- CITY TABS -->
+    <div class="city-tabs">
+        <button class="city-tab-btn active" onclick="switchCity('nairobi', this)">🏙️ Nairobi</button>
+        <button class="city-tab-btn" onclick="switchCity('mombasa', this)">🌊 Mombasa</button>
+        <button class="city-tab-btn" onclick="switchCity('nakuru', this)">🏞️ Nakuru</button>
+    </div>
 
-        <!-- NAIROBI CATEGORY -->
-        <div class="category-header">🏙️ NAIROBI DATES</div>
-        <div class="category-grid">
-            <div class="spot-card" onclick="toggleSpot(this)">
-                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=400&q=80" class="spot-img" alt="Rooftop Dinner">
-                <div class="spot-info">
-                    <div class="spot-title">Rooftop Fine Dining</div>
-                    <div class="spot-desc">High-end candlelit dinner & cocktails in Westlands.</div>
-                    <div class="spot-priority">Priority • High Romance</div>
-                </div>
-            </div>
-            <div class="spot-card" onclick="toggleSpot(this)">
-                <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=400&q=80" class="spot-img" alt="Shopping & VIP Cinema">
-                <div class="spot-info">
-                    <div class="spot-title">Shopping Spree & VIP Cinema</div>
-                    <div class="spot-desc">Full shopping day at Sarit Center followed by luxury cinema seats.</div>
-                    <div class="spot-priority">Priority • Pampering</div>
-                </div>
-            </div>
-            <div class="spot-card" onclick="toggleSpot(this)">
-                <img src="https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&w=400&q=80" class="spot-img" alt="Museum & Art Tour">
-                <div class="spot-info">
-                    <div class="spot-title">Museum & Art Gallery Tour</div>
-                    <div class="spot-desc">Quiet aesthetic afternoon admiring art exhibits and cozy café lunches.</div>
-                    <div class="spot-priority">Priority • Artsy Vibe</div>
-                </div>
-            </div>
-            <div class="spot-card" onclick="toggleSpot(this)">
-                <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=400&q=80" class="spot-img" alt="Spa Day">
-                <div class="spot-info">
-                    <div class="spot-title">Full Luxury Spa Day</div>
-                    <div class="spot-desc">Deep tissue massages and body scrubs to erase internship stress.</div>
-                    <div class="spot-priority">Priority • Relaxation</div>
-                </div>
-            </div>
+    <!-- NAIROBI CONTENT -->
+    <div class="city-content active" id="city-nairobi">
+        <div class="subcategory-header">🧺 PICNICS</div>
+        <div class="spots-grid">
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Karura Forest (Sigiria / KFEET)</div><div class="spot-desc">Well-maintained lawns under indigenous canopy trees with bike rentals & cafes.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1511497584788-8767610419ea?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Oloolua Nature Trail (Karen)</div><div class="spot-desc">A secluded forest clearing right alongside a flowing river and natural waterfall.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Nairobi Arboretum (Kileleshwa)</div><div class="spot-desc">Central botanical lawns shaded by massive mature trees—ideal for blankets.</div></div></div>
         </div>
 
-        <!-- MOMBASA CATEGORY -->
-        <div class="category-header">🌊 MOMBASA GETAWAYS</div>
-        <div class="category-grid">
-            <div class="spot-card" onclick="toggleSpot(this)">
-                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" class="spot-img" alt="Oceanfront Resort">
-                <div class="spot-info">
-                    <div class="spot-title">Oceanfront Resort Staycation</div>
-                    <div class="spot-desc">Beachfront villa relaxation, swimming, and fresh seafood dinners.</div>
-                    <div class="spot-priority">Priority • Vacation</div>
-                </div>
-            </div>
-            <div class="spot-card" onclick="toggleSpot(this)">
-                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=400&q=80" class="spot-img" alt="Sunset Dhow Cruise">
-                <div class="spot-info">
-                    <div class="spot-title">Sunset Dhow Cruise</div>
-                    <div class="spot-desc">Sailing into the sunset with music, drinks, and ocean breeze.</div>
-                    <div class="spot-priority">Priority • Romantic</div>
-                </div>
-            </div>
-            <div class="spot-card" onclick="toggleSpot(this)">
-                <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=400&q=80" class="spot-img" alt="Beach Picnic">
-                <div class="spot-info">
-                    <div class="spot-title">Private Beach Picnic</div>
-                    <div class="spot-desc">A white sand setup with fruits, wine, and ocean views.</div>
-                    <div class="spot-priority">Priority • Cozy</div>
-                </div>
-            </div>
-            <div class="spot-card" onclick="toggleSpot(this)">
-                <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=400&q=80" class="spot-img" alt="Old Town & Fort Jesus">
-                <div class="spot-info">
-                    <div class="spot-title">Old Town Walk & Gelato</div>
-                    <div class="spot-desc">Exploring historic streets, swahili architecture, and iced drinks.</div>
-                    <div class="spot-priority">Priority • Culture</div>
-                </div>
-            </div>
+        <div class="subcategory-header">🎬 MOVIES</div>
+        <div class="spots-grid">
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Unseen Nairobi (Kilimani)</div><div class="spot-desc">Independent rooftop cinema featuring indie movies and a breezy open-air bar.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Midnight Vibez Outdoor Cinema</div><div class="spot-desc">Garden movie nights featuring wireless HD headphones and cozy bonfires.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Century Cinemax (Sarit IMAX)</div><div class="spot-desc">Premium 3D screen experience equipped with plush recliners.</div></div></div>
         </div>
 
-        <!-- NAKURU CATEGORY -->
-        <div class="category-header">🏞️ NAKURU ESCAPES</div>
-        <div class="category-grid">
-            <div class="spot-card" onclick="toggleSpot(this)">
-                <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=400&q=80" class="spot-img" alt="Lord Egerton Castle">
-                <div class="spot-info">
-                    <div class="spot-title">Lord Egerton Castle Picnic</div>
-                    <div class="spot-desc">A fairytale castle garden picnic with wine and photo ops.</div>
-                    <div class="spot-priority">Priority • Aesthetic</div>
-                </div>
-            </div>
-            <div class="spot-card" onclick="toggleSpot(this)">
-                <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=400&q=80" class="spot-img" alt="Lake Nakuru Safari">
-                <div class="spot-info">
-                    <div class="spot-title">Lake Nakuru Game Drive</div>
-                    <div class="spot-desc">Seeing wildlife, flamingos, and enjoying scenic cliff views.</div>
-                    <div class="spot-priority">Priority • Nature</div>
-                </div>
-            </div>
-            <div class="spot-card" onclick="toggleSpot(this)">
-                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80" class="spot-img" alt="Menengai Crater Hike">
-                <div class="spot-info">
-                    <div class="spot-title">Menengai Crater Viewpoint Hike</div>
-                    <div class="spot-desc">Catching breathtaking crater views and fresh mountain air.</div>
-                    <div class="spot-priority">Priority • Adventure</div>
-                </div>
-            </div>
-            <div class="spot-card" onclick="toggleSpot(this)">
-                <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=400&q=80" class="spot-img" alt="Lodge Staycation">
-                <div class="spot-info">
-                    <div class="spot-title">Cozy Lake Lodge Staycation</div>
-                    <div class="spot-desc">A peaceful weekend retreat away from town routines.</div>
-                    <div class="spot-priority">Priority • Rest</div>
-                </div>
-            </div>
+        <div class="subcategory-header">🏊 SWIMMING</div>
+        <div class="spots-grid">
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Maji Magic Aqua Park (Karen)</div><div class="spot-desc">Open-water swimming, kayaking, and inflatable obstacle courses on a lake.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Trademark Hotel Rooftop Pool</div><div class="spot-desc">A stylish heated pool overlooking the diplomatic district with cocktails.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Fairview Hotel Pool (Upper Hill)</div><div class="spot-desc">Quiet temperature-controlled garden pool surrounded by lush landscaping.</div></div></div>
         </div>
 
+        <div class="subcategory-header">🥾 HIKING</div>
+        <div class="spots-grid">
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Ngong Hills Reserve</div><div class="spot-desc">Scenic 7-peak trail along the Rift Valley escarpment with constant breezes.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">William Hill Trek</div><div class="spot-desc">Off-beat trek offering dramatic drops and views of Mt. Longonot.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Karura Forest Trail</div><div class="spot-desc">Smooth shaded forest paths past bamboo groves and historic Mau Mau caves.</div></div></div>
+        </div>
+
+        <div class="subcategory-header">🏡 STAYCATION AIRBNBS</div>
+        <div class="spots-grid">
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1587061949409-02df41d5e562?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Tigoni Tea Estate A-Frame Cabin</div><div class="spot-desc">Cozy wooden A-frame set amidst rolling tea fields complete with fire pits.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Karen Eco-Treehouse</div><div class="spot-desc">Private wooden sanctuary tucked high in the trees surrounded by lush forest.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Kilimani Skyline Penthouse</div><div class="spot-desc">High-rise apartment with private terrace and skyline views.</div></div></div>
+        </div>
+
+        <div class="subcategory-header">🌿 NATURE WALKS</div>
+        <div class="spots-grid">
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Oloolua Nature Trail Loop</div><div class="spot-desc">5km walk through thick indigenous forest, riverbeds, and waterfall.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Giraffe Centre Eco-Trail</div><div class="spot-desc">1.5km sanctuary trail across Gogo River spotting warthogs and flora.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Nairobi Safari Walk</div><div class="spot-desc">Raised wooden boardwalks providing close encounters with wildlife ecosystems.</div></div></div>
+        </div>
+
+        <div class="subcategory-header">🎮 FUN GAMES</div>
+        <div class="spots-grid">
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Bao Box (Westlands)</div><div class="spot-desc">Interactive board game café with over 100 tabletop games and food.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1563841930606-67e2bce48b78?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">GP Karting (Lang'ata)</div><div class="spot-desc">Outdoor go-karting track perfect for friendly competitive racing.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Village Bowl & VR Arcade</div><div class="spot-desc">11-lane glowing bowling alley paired with virtual reality gaming booths.</div></div></div>
+        </div>
+    </div>
+
+    <!-- MOMBASA CONTENT -->
+    <div class="city-content" id="city-mombasa">
+        <div class="subcategory-header">🧺 PICNICS</div>
+        <div class="spots-grid">
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Mama Ngina Waterfront Park</div><div class="spot-desc">Scenic oceanfront promenade along Kilindini Channel to watch ships sail by.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Butterfly Pavilion (Bamburi)</div><div class="spot-desc">Serene eco-park surrounded by lush coastal flora and shaded picnic lawns.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Nguuni Nature Sanctuary</div><div class="spot-desc">Picnic under coconut palms while free-roaming giraffes wander through.</div></div></div>
+        </div>
+
+        <div class="subcategory-header">🎬 MOVIES</div>
+        <div class="spots-grid">
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Nyali Cinemax</div><div class="spot-desc">Coastal Kenya’s premiere digital cinema featuring plush seating and Dolby sound.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Moonshine Beach Bar Outdoor Cinema</div><div class="spot-desc">Casual open-air night screenings right along the beachfront under stars.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">City Mall Cinema (Nyali)</div><div class="spot-desc">Cozy boutique theater conveniently located in Nyali's main shopping center.</div></div></div>
+        </div>
+
+        <div class="subcategory-header">🏊 SWIMMING</div>
+        <div class="spots-grid">
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1582610116397-edb318620f90?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">EnglishPoint Marina Infinity Pool</div><div class="spot-desc">Jaw-dropping pool offering panoramic views of Old Town & Indian Ocean.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">PrideInn Flamingo Resort Pool</div><div class="spot-desc">Sprawling lagoon-style pool flanked by palm trees and private beds.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Serena Beach Resort Pool</div><div class="spot-desc">Classic oceanfront pool framed by Swahili architecture and ocean views.</div></div></div>
+        </div>
+
+        <div class="subcategory-header">🥾 HIKING</div>
+        <div class="spots-grid">
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Shedrick Falls Trail (Shimba Hills)</div><div class="spot-desc">Rainforest hike ending at a cascading 25-meter waterfall.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Bamburi Forest Trail</div><div class="spot-desc">Shaded 10km coastal trek through reclaimed quarry ecosystems.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Mtwapa Creek Mangrove Trail</div><div class="spot-desc">Secluded coastal walk winding through dense tidal mangroves.</div></div></div>
+        </div>
+
+        <div class="subcategory-header">🏡 STAYCATION AIRBNBS</div>
+        <div class="spots-grid">
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Nyali Beachfront Penthouse</div><div class="spot-desc">Luxury penthouse featuring floor-to-ceiling glass opening to ocean breeze.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Shanzu Ocean Cottage</div><div class="spot-desc">Swahili-style cottage with open-air verandahs and private beach access.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">EnglishPoint Luxury Studio</div><div class="spot-desc">Sleek harbor-view studio steps away from fine dining and water sports.</div></div></div>
+        </div>
+
+        <div class="subcategory-header">🌿 NATURE WALKS</div>
+        <div class="spots-grid">
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Haller Park Nature Walk</div><div class="spot-desc">Shaded loop where you can feed giant Aldabra tortoises & giraffes.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Nguuni Sunset Walk</div><div class="spot-desc">Peaceful evening stroll through open woodland near the watering hole.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Mamba Village Botanical Walk</div><div class="spot-desc">Relaxed walk through botanical gardens, crocodile habitats & orchid displays.</div></div></div>
+        </div>
+
+        <div class="subcategory-header">🎮 FUN GAMES</div>
+        <div class="spots-grid">
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1563841930606-67e2bce48b78?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Mombasa Go-Kart (Bamburi)</div><div class="spot-desc">High-speed outdoor track featuring twin karts and off-road buggies.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Wild Waters Kenya (Nyali)</div><div class="spot-desc">Action-packed water park featuring massive slide towers and splash zones.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Nyali Strike Bowling Lounge</div><div class="spot-desc">Neon-lit bowling lanes equipped with arcade games and cocktails.</div></div></div>
+        </div>
+    </div>
+
+    <!-- NAKURU CONTENT -->
+    <div class="city-content" id="city-nakuru">
+        <div class="subcategory-header">🧺 PICNICS</div>
+        <div class="spots-grid">
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Lord Egerton Castle Grounds</div><div class="spot-desc">Rolling manicured lawns surrounding a grand historic castle.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Baboon Cliff Lookout</div><div class="spot-desc">High vantage point offering cliffside views of Lake Nakuru & flamingos.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Hyrax Hill Archaeological Lawn</div><div class="spot-desc">Peaceful grassy lawns beneath acacia trees rich with historical charm.</div></div></div>
+        </div>
+
+        <div class="subcategory-header">🎬 MOVIES</div>
+        <div class="spots-grid">
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Westside Mall Cinema</div><div class="spot-desc">Modern indoor screen hall in Nakuru’s flagship retail center.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Rift Valley Pop-Up Garden Cinema</div><div class="spot-desc">Outdoor movie screenings paired with cozy bonfires and lounge seating.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Sarova Woodlands Screening Lounge</div><div class="spot-desc">Intimate luxury cinema room for private date screenings.</div></div></div>
+        </div>
+
+        <div class="subcategory-header">🏊 SWIMMING</div>
+        <div class="spots-grid">
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Sarova Lion Hill Game Lodge Pool</div><div class="spot-desc">Heated outdoor pool looking into acacia forests of Lake Nakuru.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1582610116397-edb318620f90?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Lake Nakuru Sopa Lodge Pool</div><div class="spot-desc">High-altitude infinity pool providing sweeping vistas of Rift Valley.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Merica Hotel Pool</div><div class="spot-desc">City-center swimming pool paired with sun loungers and poolside service.</div></div></div>
+        </div>
+
+        <div class="subcategory-header">🥾 HIKING</div>
+        <div class="spots-grid">
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Menengai Crater Rim Trail</div><div class="spot-desc">Dramatic volcano hike along the edge of Africa's 2nd largest caldera.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Sleeping Warrior & Ugali Hill</div><div class="spot-desc">Scenic ridge trek offering volcanic terrain views over Lake Elmenteita.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Mount Eburu Summit Trail</div><div class="spot-desc">Forested high-altitude trail featuring natural geothermal steam vents.</div></div></div>
+        </div>
+
+        <div class="subcategory-header">🏡 STAYCATION AIRBNBS</div>
+        <div class="spots-grid">
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1587061949409-02df41d5e562?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Elmenteita Cliffside Eco-Cabin</div><div class="spot-desc">Rustic wooden cabin perched over Lake Elmenteita with private plunge tubs.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Menengai View Villa</div><div class="spot-desc">Modern architectural escape with wide glass walls overlooking crater.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Greenpark Golf Villa</div><div class="spot-desc">Tranquil golf course villa set against Rift Valley backdrop views.</div></div></div>
+        </div>
+
+        <div class="subcategory-header">🌿 NATURE WALKS</div>
+        <div class="spots-grid">
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Lake Elmenteita Shoreline Walk</div><div class="spot-desc">Peaceful lakeside walk surrounded by white pelicans and flamingos.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Makalia Falls Trail</div><div class="spot-desc">Shaded woodland trek along the river leading to a waterfall drop.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Hyrax Hill Prehistoric Trail</div><div class="spot-desc">Gentle hilltop nature trail offering clear views over Nakuru city.</div></div></div>
+        </div>
+
+        <div class="subcategory-header">🎮 FUN GAMES</div>
+        <div class="spots-grid">
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Midriver Fun Park</div><div class="spot-desc">Activity park offering quad bikes, bumper cars, and team courses.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Westside Mall Gaming Zone</div><div class="spot-desc">Interactive indoor arcade equipped with VR simulators and air hockey.</div></div></div>
+            <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1563841930606-67e2bce48b78?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Crater Outdoor Go-Karting Track</div><div class="spot-desc">Outdoor racing track located on the outskirts of Nakuru town.</div></div></div>
+        </div>
     </div>
 
     <div style="display: flex; gap: 15px; margin-top: 20px;">
@@ -673,6 +747,14 @@
         window.scrollTo(0,0);
     }
 
+    function switchCity(cityName, btn) {
+        document.querySelectorAll('.city-content').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.city-tab-btn').forEach(el => el.classList.remove('active'));
+
+        document.getElementById(`city-${cityName}`).classList.add('active');
+        btn.classList.add('active');
+    }
+
     function toggleSpot(card) {
         card.classList.toggle('selected');
     }
@@ -682,7 +764,7 @@
         if(selectedCount === 0) {
             alert("Please select at least one date spot you'd like us to go on!");
         } else {
-            alert(`Your ${selectedCount} selected date priorities have been saved! 💖 I can't wait to treat you to all of them, my queen!`);
+            alert(`Your ${selectedCount} selected date priorities have been saved! 💖 I can't wait to treat you to all of them, Tracy my queen!`);
         }
     }
 </script>
