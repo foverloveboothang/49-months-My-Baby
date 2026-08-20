@@ -80,45 +80,104 @@
             justify-content: center;
         }
 
-        /* --- STEP 1: COVER CLOCK BADGE --- */
-        .clock-badge {
-            width: 150px;
-            height: 150px;
+        /* --- STEP 1: WATCH DIAL BADGE --- */
+        .watch-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
-            border: 2px dashed var(--dull-gold);
-            background: #141216;
+            background: radial-gradient(circle, #1F1B24 0%, #0A090C 100%);
+            border: 4px solid var(--dull-gold);
+            box-shadow: 0 0 30px rgba(197, 160, 89, 0.35), inset 0 0 20px rgba(0,0,0,0.9);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            position: relative;
             margin-bottom: 25px;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.8), 0 0 15px rgba(197, 160, 89, 0.2);
         }
 
-        .clock-badge::before {
-            content: '';
+        .watch-bezel {
             position: absolute;
             inset: -8px;
-            border: 1px solid var(--sky-blue);
             border-radius: 50%;
-            opacity: 0.35;
+            border: 1px dashed rgba(137, 207, 240, 0.4);
         }
 
-        .clock-num {
+        .watch-ticks {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+
+        .watch-tick {
+            position: absolute;
+            width: 2px;
+            height: 8px;
+            background: var(--dull-gold);
+            left: 50%;
+            top: 4px;
+            transform-origin: 50% 86px;
+        }
+
+        .watch-hand-hour {
+            position: absolute;
+            width: 3px;
+            height: 42px;
+            background: var(--dull-gold);
+            top: 48px;
+            left: calc(50% - 1.5px);
+            transform-origin: bottom center;
+            transform: rotate(45deg);
+            border-radius: 2px;
+            z-index: 2;
+        }
+
+        .watch-hand-min {
+            position: absolute;
+            width: 2px;
+            height: 58px;
+            background: var(--sky-blue);
+            top: 32px;
+            left: calc(50% - 1px);
+            transform-origin: bottom center;
+            transform: rotate(300deg);
+            border-radius: 2px;
+            z-index: 2;
+        }
+
+        .watch-center-pin {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--dull-gold);
+            border-radius: 50%;
+            z-index: 3;
+            box-shadow: 0 0 6px var(--dull-gold);
+        }
+
+        .watch-dial-text {
+            z-index: 4;
+            text-align: center;
+            margin-top: 18px;
+        }
+
+        .watch-num {
             font-family: 'Cinzel', serif;
-            font-size: 3.2rem;
+            font-size: 3rem;
             font-weight: 900;
             color: var(--dull-gold);
             line-height: 1;
+            text-shadow: 0 0 12px rgba(197, 160, 89, 0.5);
         }
 
-        .clock-sub {
-            font-size: 0.7rem;
-            letter-spacing: 3px;
+        .watch-sub {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
             color: var(--sky-blue);
             text-transform: uppercase;
-            margin-top: 4px;
+            margin-top: 2px;
+            font-weight: 700;
         }
 
         .hero-title {
@@ -180,13 +239,25 @@
         /* --- STEP 2: FLOWERS --- */
         .flower-heading {
             font-family: 'Cinzel', serif;
-            font-size: clamp(1.4rem, 3.5vw, 2.4rem);
+            font-size: clamp(1.4rem, 3.5vw, 2.2rem);
             color: var(--dull-gold);
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             text-align: center;
             margin-bottom: 25px;
             font-weight: 700;
             text-transform: uppercase;
+            line-height: 1.3;
+        }
+
+        .rose-artistic-font {
+            font-family: 'Alex Brush', cursive;
+            font-size: clamp(2.2rem, 5.5vw, 3.5rem);
+            color: var(--soft-pink);
+            text-transform: none;
+            display: block;
+            margin-top: 4px;
+            font-weight: 400;
+            text-shadow: 0 0 12px rgba(247, 202, 208, 0.4);
         }
 
         .flower-gallery {
@@ -194,12 +265,12 @@
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 20px;
             width: 100%;
-            max-width: 1000px;
+            max-width: 900px;
             margin-bottom: 25px;
         }
 
         .flower-card {
-            height: 400px;
+            height: 420px;
             border-radius: 20px;
             overflow: hidden;
             position: relative;
@@ -281,7 +352,7 @@
         .black-paper-card {
             background: #121214;
             width: 100%;
-            max-width: 900px; /* WIDER LAYOUT TO AVOID EXCESS SCROLLING */
+            max-width: 900px;
             padding: 50px 40px;
             border-radius: 6px;
             box-shadow: var(--shadow);
@@ -466,12 +537,33 @@
     <div class="nav-dot" onclick="goToStep(5)"></div>
 </div>
 
-<!-- STEP 1: COVER -->
+<!-- STEP 1: COVER WITH LUXURY WATCH DIAL -->
 <div class="screen-step active" id="step1">
-    <div class="clock-badge">
-        <span class="clock-num">49</span>
-        <span class="clock-sub">MONTHS</span>
+    <div class="watch-container">
+        <div class="watch-bezel"></div>
+        <div class="watch-ticks">
+            <div class="watch-tick" style="transform: rotate(0deg);"></div>
+            <div class="watch-tick" style="transform: rotate(30deg);"></div>
+            <div class="watch-tick" style="transform: rotate(60deg);"></div>
+            <div class="watch-tick" style="transform: rotate(90deg);"></div>
+            <div class="watch-tick" style="transform: rotate(120deg);"></div>
+            <div class="watch-tick" style="transform: rotate(150deg);"></div>
+            <div class="watch-tick" style="transform: rotate(180deg);"></div>
+            <div class="watch-tick" style="transform: rotate(210deg);"></div>
+            <div class="watch-tick" style="transform: rotate(240deg);"></div>
+            <div class="watch-tick" style="transform: rotate(270deg);"></div>
+            <div class="watch-tick" style="transform: rotate(300deg);"></div>
+            <div class="watch-tick" style="transform: rotate(330deg);"></div>
+        </div>
+        <div class="watch-hand-hour"></div>
+        <div class="watch-hand-min"></div>
+        <div class="watch-center-pin"></div>
+        <div class="watch-dial-text">
+            <div class="watch-num">49</div>
+            <div class="watch-sub">MONTHS PASSED</div>
+        </div>
     </div>
+
     <h1 class="hero-title">Happy 49th Month Anniversary</h1>
     <p class="hero-sub">
         49 months of endless love, growth, and priceless memories. Welcome to the beginning of our 5th chapter together, my love 👑.
@@ -481,14 +573,17 @@
 
 <!-- STEP 2: FLOWERS -->
 <div class="screen-step" id="step2">
-    <h1 class="flower-heading">FRESH RED ROSES & WHITE LILIES 🌹🪷</h1>
+    <h1 class="flower-heading">
+        Fresh Roses & Lilies
+        <span class="rose-artistic-font">for my rose 🌹</span>
+    </h1>
     
     <div class="flower-gallery">
         <div class="flower-card">
-            <img src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=800&q=80" alt="Fresh Red Roses Bouquet">
+            <img src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=800&q=80" alt="Fresh Red Roses Bouquet with Baby's Breath">
         </div>
         <div class="flower-card">
-            <img src="https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&w=800&q=80" alt="Fresh White Lilies and Pink Bouquet">
+            <img src="https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&w=800&q=80" alt="Fresh Pink and Purple Lilies Bouquet">
         </div>
     </div>
 
