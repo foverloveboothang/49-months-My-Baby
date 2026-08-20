@@ -115,6 +115,28 @@
         }
         .vault-btn:hover { transform: translateY(-2px); box-shadow: 0 0 15px var(--soft-pink); }
 
+        /* Playlist Modal Toggle Button */
+        .playlist-btn {
+            position: fixed;
+            bottom: 65px;
+            right: 20px;
+            z-index: 100;
+            background: rgba(137, 207, 240, 0.2);
+            border: 1px solid var(--sky-blue);
+            color: var(--sky-blue);
+            padding: 8px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.3s;
+        }
+        .playlist-btn:hover { background: var(--sky-blue); color: #000; }
+
         /* --- SCREEN STEP CONTAINER --- */
         .screen-step {
             display: none;
@@ -297,8 +319,8 @@
         }
 
         .white-gel-letter {
-            font-family: 'Caveat', cursive; font-size: 1.55rem; color: #FFFFFF;
-            line-height: 1.5; letter-spacing: 0.5px;
+            font-family: 'Caveat', cursive; font-size: 1.45rem; color: #FFFFFF;
+            line-height: 1.55; letter-spacing: 0.5px;
             text-shadow: 0 0 1px rgba(255, 255, 255, 0.9), 0 0 2px rgba(255, 255, 255, 0.5);
             position: relative; z-index: 3; max-width: 580px; margin: 15px auto 0;
         }
@@ -329,7 +351,7 @@
             border-left: 2px dashed rgba(255,255,255,0.5); border-right: 2px dashed rgba(255,255,255,0.5);
         }
 
-        /* --- STEP 5: CITY QUESTIONNAIRE (EXPANDED FULL SPOTS LIST) --- */
+        /* --- STEP 5: CITY QUESTIONNAIRE --- */
         .city-tabs { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center; }
         .city-tab-btn {
             background: var(--card-dark); border: 1px solid var(--border-dark);
@@ -398,6 +420,28 @@
         }
         .vault-card:hover { background: var(--dull-gold); color: #000; transform: scale(1.1); box-shadow: 0 0 15px var(--dull-gold); }
 
+        /* PLAYLIST MODAL */
+        .playlist-modal {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.92); backdrop-filter: blur(12px);
+            z-index: 200; padding: 30px 20px;
+            flex-direction: column; align-items: center; justify-content: center;
+            animation: fadeIn 0.4s ease;
+        }
+        .playlist-modal.active { display: flex; }
+        .playlist-card-container {
+            background: var(--card-dark); border: 2px solid var(--dull-gold);
+            border-radius: 20px; padding: 25px; max-width: 480px; width: 100%;
+            box-shadow: 0 0 30px rgba(197, 160, 89, 0.3);
+        }
+        .song-item {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 10px 14px; border-bottom: 1px solid var(--border-dark);
+        }
+        .song-item:last-child { border-bottom: none; }
+        .song-title { font-weight: 700; color: var(--beige); font-size: 0.95rem; }
+        .song-artist { font-size: 0.8rem; color: var(--sky-blue); }
+
         /* Single Reason Pop-up Box */
         .reason-popup {
             display: none; position: fixed; inset: 0;
@@ -446,12 +490,12 @@
 </div>
 
 <!-- UTILITY BUTTONS -->
-<button class="audio-toggle-btn" onclick="toggleAudio()"><span id="audioIcon">🎵</span> Kethan - Dua 🇰🇪</button>
+<button class="playlist-btn" onclick="togglePlaylistModal(true)">🎶 Our Playlist</button>
+<button class="audio-toggle-btn" onclick="toggleAudio()"><span id="audioIcon">🎵</span> Kethan - Kesho Kutwa 🎶</button>
 <button class="vault-btn" onclick="toggleVaultModal(true)">💎 49 Reasons Vault</button>
 
 <!-- AUDIO ENGINES -->
-<!-- Background Music: Kethan - Dua (Replace src with your local/hosted kethan-dua.mp3 file) -->
-<audio id="bgmAudio" loop src="kethan-dua.mp3"></audio>
+<audio id="bgmAudio" loop src="kethan-kesho-kutwa.mp3"></audio>
 <audio id="voiceNoteAudio" src="whisper-voice-note.mp3"></audio>
 
 <!-- STEP 1: COVER WITH LUXURY WATCH DIAL -->
@@ -550,15 +594,16 @@
                 </svg>
 
                 <div style="text-align: center;">
-                    <div class="sticker-header">49 Months Together</div>
+                    <div class="sticker-header">49th Month Letter</div>
                 </div>
 
-                <!-- PRESERVED FULL EXACT HANDWRITTEN LETTER WORDING -->
+                <!-- UPDATED EXACT HANDWRITTEN LETTER -->
                 <p class="white-gel-letter">
-                    Hey my baby, cupcake, boothang, love of my life 💖,<br><br>
-                    Happy 49th month anniversary baby! 🎉 I wanted to celebrate this milestone specially because it marks the first month of our 5th year together my love 🥹✨.<br><br>
-                    You are the best thing that has ever happened to me, hands down no kidding baby 🙌❤️. Nakupenda! 😘 My dreams are filled with spoiling and pampering you senseless my queen! 👑<br><br>
-                    Thank you for being my rock, my safest space, my sweetest laugh, and my favorite person to walk through life with. Here is to 49 beautiful months behind us and forever ahead of us!<br><br>
+                    Happy 49th month anniversary, baby! 🥂✨<br><br>
+                    I wanted to celebrate this anniversary month specially because it marks the first month of our 5th year together, my love. You are the best thing that has ever happened to me—hands down, no kidding, baby. Nakupenda. 🥹❤️<br><br>
+                    I wanted to let you know that my dreams are just filled with wet, warm cum meant for your boobs, ass, and your sexy body. 🔥😈 I also only dream of spoiling you senseless, baby—that's all I think about. 🛍️👑<br><br>
+                    It's been a tough year for both of us, but we have come out of half of it being even more in love than when we began this journey, baby. 🌹💪 I want to celebrate this anniversary to let you know you're my queen and my leash, and your wish is my command, baby. 👑⛓️<br><br>
+                    I love you so much, my baby. Happy 49th month anniversary! 🎉💋<br><br>
                     Forever yours, <strong>Paul Ondieki 💋</strong>
                 </p>
 
@@ -582,7 +627,7 @@
     </div>
 </div>
 
-<!-- STEP 5: CITY QUESTIONNAIRE (ALL SPOTS INCLUDED) -->
+<!-- STEP 5: CITY QUESTIONNAIRE (FULL EXPANDED LIST) -->
 <div class="screen-step" id="step5">
     <h2 style="font-family: 'Cinzel', serif; color: var(--dull-gold); text-align: center;">Post-Embu Date Wishlist 📍</h2>
     <p style="color: var(--sky-blue); font-size: 0.85rem; margin-bottom: 20px; text-align: center;">Rate your favorite spots out of 10 to auto-generate our master itinerary!</p>
@@ -593,47 +638,159 @@
         <button class="city-tab-btn" onclick="switchCity('nakuru', this)">🏞️ Nakuru</button>
     </div>
 
-    <!-- NAIROBI (COMPLETE LIST OF ALL SPOTS) -->
+    <!-- NAIROBI -->
     <div class="city-content active" id="city-nairobi" data-city="Nairobi">
-        <div class="subcategory-header">🧺 PICNICS & NATURE</div>
+        <div class="subcategory-header">🧺 PICNICS</div>
         <div class="spots-grid">
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Karura Forest (Sigiria / KFEET)</div><div class="spot-desc">Well-maintained lawns under canopy trees with bike rentals & serene picnic spots.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1511497584788-8767610419ea?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Oloolua Nature Trail (Karen)</div><div class="spot-desc">Secluded forest clearing alongside a flowing river, cave & waterfall.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Nairobi Botanical Arboretum</div><div class="spot-desc">Lush green garden setting in the city center perfect for quiet picnic dates.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Karura Forest (Sigiria / KFEET Grounds)</div><div class="spot-desc">Well-maintained lawns under indigenous canopy trees, featuring nearby bike rentals, cafes, and clean facilities.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1511497584788-8767610419ea?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Oloolua Nature Trail (Karen)</div><div class="spot-desc">A secluded, serene forest clearing right alongside a flowing river and natural waterfall.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Nairobi Arboretum (Kileleshwa)</div><div class="spot-desc">Central, budget-friendly botanical lawns shaded by massive mature trees—ideal for a laid-back blanket setup.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
         </div>
 
-        <div class="subcategory-header">🎬 MOVIES & ROOFTOPS</div>
+        <div class="subcategory-header">🎬 MOVIES</div>
         <div class="spots-grid">
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Unseen Nairobi (Kilimani)</div><div class="spot-desc">Independent rooftop cinema featuring indie movies & open-air bar sunset views.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Century IMAX (Two Rivers / Garden City)</div><div class="spot-desc">Ultra VIP cinema experience with reclining leather seats & popcorn service.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Unseen Nairobi (Kilimani)</div><div class="spot-desc">An independent rooftop cinema featuring indie movies, vintage seating, and a breezy open-air bar.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Midnight Vibez (Silent Outdoor Cinema)</div><div class="spot-desc">Garden movie nights featuring wireless HD headphones, bonfires, and city views.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Century Cinemax (Sarit Centre IMAX)</div><div class="spot-desc">Premium 3D screen experience equipped with plush recliners for classic date nights.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
         </div>
 
-        <div class="subcategory-header">🍽️ FINE DINING & NIGHTLIFE</div>
+        <div class="subcategory-header">🏊 SWIMMING</div>
         <div class="spots-grid">
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Nairobi Street Kitchen (Westlands)</div><div class="spot-desc">Vibrant street food courtyard, vintage bus lounge & cocktail rooftop bar.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Giraffe Manor / Centre (Karen)</div><div class="spot-desc">Feeding giraffes up close & romantic high tea experience in Karen.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Maji Magic Aqua Park (Waterfront Karen)</div><div class="spot-desc">Open-water swimming, kayaking, and inflatable obstacle courses on a freshwater lake.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1582610116397-edb318620f90?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Trademark Hotel Rooftop Pool (Village Market)</div><div class="spot-desc">A stylish heated pool overlooking the diplomatic district, paired with craft cocktails.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Fairview Hotel Pool (Upper Hill)</div><div class="spot-desc">Quiet, temperature-controlled garden pool surrounded by lush landscaping away from city traffic.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+        </div>
+
+        <div class="subcategory-header">🥾 HIKING</div>
+        <div class="spots-grid">
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Ngong Hills Reserve</div><div class="spot-desc">Scenic 7-peak trail along the Great Rift Valley escarpment with constant breezes and ridge vistas.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">William Hill (Rift Valley Escarpment)</div><div class="spot-desc">A moderately challenging off-beat trek offering dramatic drops and views of Mt. Longonot.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Karura Forest Trail</div><div class="spot-desc">Smooth, well-marked shaded forest paths leading past bamboo groves and historic Mau Mau caves.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+        </div>
+
+        <div class="subcategory-header">🏡 STAYCATION AIRBNBS</div>
+        <div class="spots-grid">
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Tigoni Tea Estate A-Frame Cabin</div><div class="spot-desc">Cozy wooden A-frame set amidst rolling tea fields in Limuru, complete with fire pits.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Karen Eco-Treehouse</div><div class="spot-desc">Private wooden sanctuary tucked high in the trees, surrounded by lush forest and birdlife.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Kilimani Skyline Penthouse</div><div class="spot-desc">High-rise apartment with a private terrace, floor-to-ceiling windows, and city skyline views.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+        </div>
+
+        <div class="subcategory-header">🌿 NATURE WALKS</div>
+        <div class="spots-grid">
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1511497584788-8767610419ea?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Oloolua Nature Trail Loop</div><div class="spot-desc">A 5km walk through thick indigenous forest, riverbeds, and a cascading waterfall.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Giraffe Centre Eco-Trail</div><div class="spot-desc">1.5km sanctuary trail across Gogo River where you can spot warthogs and native flora.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Nairobi Safari Walk</div><div class="spot-desc">Raised wooden boardwalks providing close encounters with savannah and forest wildlife ecosystems.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+        </div>
+
+        <div class="subcategory-header">🎮 FUN GAMES</div>
+        <div class="spots-grid">
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Bao Box (Westlands)</div><div class="spot-desc">Interactive board game café with over 100 tabletop games, artisan cocktails, and comfort food.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">GP Karting (Lang'ata)</div><div class="spot-desc">Outdoor go-karting track perfect for friendly competitive racing.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Village Bowl & VR Arcade (Village Market)</div><div class="spot-desc">11-lane glowing bowling alley paired with virtual reality gaming booths.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
         </div>
     </div>
 
-    <!-- MOMBASA (COMPLETE LIST OF ALL SPOTS) -->
+    <!-- MOMBASA -->
     <div class="city-content" id="city-mombasa" data-city="Mombasa">
-        <div class="subcategory-header">🌊 SWIMMING, BEACH & CRUISES</div>
+        <div class="subcategory-header">🧺 PICNICS</div>
         <div class="spots-grid">
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1582610116397-edb318620f90?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">EnglishPoint Marina Pool</div><div class="spot-desc">Luxury infinity pool with panoramic views of Old Town & Indian Ocean.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Tamarind Dhow Dinner Cruise</div><div class="spot-desc">A romantic seafood dinner cruise along Tudor Creek under the stars.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Fort Jesus Night Light Show</div><div class="spot-desc">Historical light show projection on ancient coral walls in Old Town.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Yul's Aquadrom (Bamburi Beach)</div><div class="spot-desc">Beachfront dining, delicious ice cream, jet skis & ocean breezes.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Mama Ngina Waterfront Park</div><div class="spot-desc">Scenic oceanfront promenade along the Kilindini Channel, ideal for watching ships sail by while enjoying local snacks.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Butterfly Pavilion (Bamburi)</div><div class="spot-desc">Serene eco-park surrounded by lush coastal flora, lily ponds, and shaded grassy picnic lawns.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Nguuni Nature Sanctuary</div><div class="spot-desc">Picnic under coconut palms while free-roaming giraffes and elands wander through during sunset.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+        </div>
+
+        <div class="subcategory-header">🎬 MOVIES</div>
+        <div class="spots-grid">
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Nyali Cinemax</div><div class="spot-desc">Coastal Kenya’s premiere digital cinema featuring plush seating, Dolby Surround sound, and the latest blockbusters.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Moonshine Beach Bar Outdoor Cinema</div><div class="spot-desc">Casual open-air night screenings right along the beachfront under the stars.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">City Mall Cinema (Nyali)</div><div class="spot-desc">Cozy boutique theater option conveniently located in Nyali's main shopping center.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+        </div>
+
+        <div class="subcategory-header">🏊 SWIMMING</div>
+        <div class="spots-grid">
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1582610116397-edb318620f90?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">EnglishPoint Marina Infinity Pool</div><div class="spot-desc">Jaw-dropping pool offering sweeping panoramic views of Old Town and the Indian Ocean.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">PrideInn Flamingo Beach Resort Pool</div><div class="spot-desc">Sprawling lagoon-style pool flanked by palm trees and private lounge beds.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Serena Beach Resort Pool</div><div class="spot-desc">Classic oceanfront pool framed by authentic Swahili architecture and beach views.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+        </div>
+
+        <div class="subcategory-header">🥾 HIKING</div>
+        <div class="spots-grid">
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Shedrick Falls Trail (Shimba Hills)</div><div class="spot-desc">Moderate rainforest hike through Shimba Hills Reserve ending at a cascading 25-meter waterfall.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Bamburi Forest Trail</div><div class="spot-desc">Shaded 10km coastal trek through reclaimed quarry ecosystems and baobab groves.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Mtwapa Creek Mangrove Trail</div><div class="spot-desc">Secluded coastal walk winding through dense tidal mangroves and estuary habitats.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+        </div>
+
+        <div class="subcategory-header">🏡 STAYCATION AIRBNBS</div>
+        <div class="spots-grid">
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Nyali Beachfront Penthouse</div><div class="spot-desc">High-rise luxury apartment featuring floor-to-ceiling glass doors opening directly to ocean breezes.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Shanzu Ocean Cottage</div><div class="spot-desc">Private Swahili-style cottage with open-air verandahs and private beach access.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">EnglishPoint Luxury Studio</div><div class="spot-desc">Sleek harbor-view studio steps away from fine dining and water sport rentals.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+        </div>
+
+        <div class="subcategory-header">🌿 NATURE WALKS</div>
+        <div class="spots-grid">
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Haller Park Nature Walk</div><div class="spot-desc">Shaded nature loop where you can feed giant Aldabra tortoises and giraffes up close.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Nguuni Sunset Walk</div><div class="spot-desc">Peaceful evening stroll through open woodland as herds gather near the watering hole.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1511497584788-8767610419ea?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Mamba Village Botanical Walk</div><div class="spot-desc">Relaxed walk through botanical gardens, crocodile habitats, and orchid displays.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+        </div>
+
+        <div class="subcategory-header">🎮 FUN GAMES</div>
+        <div class="spots-grid">
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Mombasa Go-Kart (Bamburi)</div><div class="spot-desc">High-speed outdoor track featuring twin karts, off-road buggies, and a sports bar.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Wild Waters Kenya (Nyali)</div><div class="spot-desc">Action-packed water park featuring massive slide towers and splash zones.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Nyali Strike Bowling Lounge</div><div class="spot-desc">Neon-lit bowling lanes equipped with arcade games and cocktail service.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
         </div>
     </div>
 
-    <!-- NAKURU (COMPLETE LIST OF ALL SPOTS) -->
+    <!-- NAKURU -->
     <div class="city-content" id="city-nakuru" data-city="Nakuru">
-        <div class="subcategory-header">🥾 HIKING, LAKES & SCENIC SPOTS</div>
+        <div class="subcategory-header">🧺 PICNICS</div>
         <div class="spots-grid">
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Menengai Crater Rim Trail</div><div class="spot-desc">Dramatic volcano hike along the edge of Africa's 2nd largest caldera.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Lake Nakuru National Park Safari</div><div class="spot-desc">Baboon Cliff lookout, pink flamingo shores & rhino sanctuary drive.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Lord Egerton Castle</div><div class="spot-desc">Historic 52-room castle with stunning manicured green lawns for picnics.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
-            <div class="spot-card"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Lake Naivasha Boat Ride & Crescent Island</div><div class="spot-desc">Scenic boat safari among hippos & walking freely with giraffes.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Lord Egerton Castle Grounds</div><div class="spot-desc">Rolling manicured lawns surrounding a grand 52-room historic castle.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Baboon Cliff Lookout (Lake Nakuru NP)</div><div class="spot-desc">High vantage point offering panoramic cliffside views of Lake Nakuru and flamingos.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Hyrax Hill Archaeological Site</div><div class="spot-desc">Peaceful grassy lawns set beneath shady acacia trees rich with historical charm.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+        </div>
+
+        <div class="subcategory-header">🎬 MOVIES</div>
+        <div class="spots-grid">
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Westside Mall Cinema</div><div class="spot-desc">Modern indoor screen hall in Nakuru’s flagship retail center.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Rift Valley Pop-Up Garden Cinema</div><div class="spot-desc">Outdoor movie screenings paired with cozy bonfires and lounge seating.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Sarova Woodlands Screening Lounge</div><div class="spot-desc">Intimate luxury cinema room available for private dates inside the hotel complex.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+        </div>
+
+        <div class="subcategory-header">🏊 SWIMMING</div>
+        <div class="spots-grid">
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1582610116397-edb318620f90?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Sarova Lion Hill Game Lodge Pool</div><div class="spot-desc">Heated outdoor pool looking out into the serene acacia forests of Lake Nakuru National Park.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Lake Nakuru Sopa Lodge Pool</div><div class="spot-desc">High-altitude infinity pool providing sweeping vistas of the Rift Valley.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Merica Hotel Pool</div><div class="spot-desc">City-center swimming pool paired with sun loungers and full poolside service.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+        </div>
+
+        <div class="subcategory-header">🥾 HIKING</div>
+        <div class="spots-grid">
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Menengai Crater Rim Trail</div><div class="spot-desc">Dramatic volcano hike leading along the edge of Africa's second-largest caldera.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Sleeping Warrior & Ugali Hill (Elmenteita)</div><div class="spot-desc">Scenic ridge trek offering breathtaking volcanic terrain views over Lake Elmenteita.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Mount Eburu Summit Trail</div><div class="spot-desc">Forested high-altitude trail featuring natural geothermal steam vents along the way.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+        </div>
+
+        <div class="subcategory-header">🏡 STAYCATION AIRBNBS</div>
+        <div class="spots-grid">
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Elmenteita Cliffside Eco-Cabin</div><div class="spot-desc">Rustic wooden cabin perched over Lake Elmenteita with private outdoor plunge tubs.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Menengai View Villa</div><div class="spot-desc">Modern architectural escape featuring wide glass walls overlooking the crater.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Greenpark Golf Villa</div><div class="spot-desc">Tranquil golf course villa set against Great Rift Valley backdrop views.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+        </div>
+
+        <div class="subcategory-header">🌿 NATURE WALKS</div>
+        <div class="spots-grid">
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Lake Elmenteita Shoreline Walk</div><div class="spot-desc">Peaceful lakeside walk surrounded by white pelicans and flamingos.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1511497584788-8767610419ea?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Makalia Falls Trail (Lake Nakuru NP)</div><div class="spot-desc">Shaded woodland trek along the river leading straight to a scenic waterfall drop.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Hyrax Hill Prehistoric Trail</div><div class="spot-desc">Gentle hilltop nature trail offering historic insight and clear views over Nakuru city.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+        </div>
+
+        <div class="subcategory-header">🎮 FUN GAMES</div>
+        <div class="spots-grid">
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Midriver Fun Park</div><div class="spot-desc">Activity park offering quad bikes, bumper cars, and outdoor team challenge courses.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Westside Mall Gaming Zone</div><div class="spot-desc">Interactive indoor arcade equipped with VR simulators and air hockey tables.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
+            <div class="spot-card"><img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Crater Outdoor Go-Karting Track</div><div class="spot-desc">Outdoor racing track located on the outskirts of Nakuru town.</div><div class="priority-picker"><label>Rating:</label><select class="spot-priority-select" onchange="handlePriorityChange(this)"><option value="0">Skip</option><option value="10">🔥 10/10</option><option value="9">🌟 9/10</option><option value="8">✨ 8/10</option></select></div></div></div>
         </div>
     </div>
 
@@ -665,6 +822,40 @@
     </div>
 </div>
 
+<!-- PLAYLIST MODAL -->
+<div class="playlist-modal" id="playlistModal">
+    <div class="playlist-card-container">
+        <h3 style="color: var(--dull-gold); font-family: 'Cinzel', serif; text-align: center; margin-bottom: 15px;">Our Playlist 🎶</h3>
+        <div class="song-item">
+            <span class="song-title">Kesho Kutwa <span style="font-size:0.7rem; color:var(--dull-gold);">(New Addition)</span></span>
+            <span class="song-artist">Kethan</span>
+        </div>
+        <div class="song-item">
+            <span class="song-title">Suzanna</span>
+            <span class="song-artist">Sauti Sol</span>
+        </div>
+        <div class="song-item">
+            <span class="song-title">Pombe Sigara</span>
+            <span class="song-artist">Nviiri the Storyteller</span>
+        </div>
+        <div class="song-item">
+            <span class="song-title">Lucy</span>
+            <span class="song-artist">Bensoul</span>
+        </div>
+        <div class="song-item">
+            <span class="song-title">Cherry Orange</span>
+            <span class="song-artist">Xenia Manasseh</span>
+        </div>
+        <div class="song-item">
+            <span class="song-title">Insecure</span>
+            <span class="song-artist">Bien</span>
+        </div>
+        <div style="text-align: center; margin-top: 20px;">
+            <button class="btn-outline" onclick="togglePlaylistModal(false)">Close Playlist</button>
+        </div>
+    </div>
+</div>
+
 <!-- 49 MEMORY VAULT MODAL -->
 <div class="vault-modal" id="vaultModal">
     <h3 style="color: var(--dull-gold); font-family: 'Cinzel', serif; margin-bottom: 5px;">49 Reasons Why I Love You 💎</h3>
@@ -683,14 +874,14 @@
 </div>
 
 <script>
-    // --- 1. ALL 49 REASONS DATASET ---
+    // --- 1. UPDATED ALL 49 REASONS DATASET ---
     const reasonsList = [
         "The way your eyes light up when you talk about something you love.",
         "How you remember the small, subtle details about my day.",
         "The comforting sound of your laugh, especially when you lose control of it.",
         "Your cozy, sleepy morning voice.",
         "The warm, reassuring feeling of holding your hand.",
-        "How you turn routine, boring errands into fun adventures.",
+        "How you turn routine, boring moments into fun memories.",
         "The way you steal my hoodies and look a thousand times better in them than I ever could.",
         "Your sense of humor that can lift my mood instantly.",
         "The silly little dances you do when you are happy.",
@@ -715,16 +906,16 @@
         "How you respect my individuality while building our life together.",
         "Your maturity in working through misunderstandings with grace.",
         "The unwavering reliability of your presence in my life.",
-        "Your distinct, charming taste in music, movies, and food.",
+        "Your distinct, charming taste in music, movies, and stories.",
         "Our vault of inside jokes that nobody else in the world understands.",
-        "The way you unashamedly sing along during car rides.",
-        "Your genuine excitement when exploring new places or trying new things.",
+        "The way you unabashedly sing along to your favorite songs around the house.",
+        "How cozy and fun our movie nights and indoor chill sessions always are.",
         "How perfect it feels to cuddle up with you after a long day.",
         "Remembering my specific preferences without me ever having to ask.",
         "The random, sweet text messages you send out of nowhere.",
         "All your unique quirks that make you uniquely you.",
         "The immediate stress relief that comes from one of your hugs.",
-        "Your knack for making holidays, trips, and weekends unforgettable.",
+        "How you make lazy weekends and simple stay-in days feel so special.",
         "The excitement I still feel every single time I see you.",
         "The way life feels richer, brighter, and clearer with you in it.",
         "How naturally you turn any physical space into a warm home.",
@@ -827,7 +1018,7 @@
     sCanvas.addEventListener('touchmove', scratch);
     setTimeout(initScratchCard, 500);
 
-    // --- 5. AUDIO CONTROLS (KETHAN - DUA) ---
+    // --- 5. AUDIO CONTROLS ---
     let bgmPlaying = false;
     function toggleAudio() {
         const audio = document.getElementById('bgmAudio');
@@ -841,7 +1032,11 @@
         else { vAudio.pause(); document.getElementById('voiceIcon').innerText = '🎙️'; }
     }
 
-    // --- 6. 49 MEMORY VAULT WITH INDIVIDUAL REASON MODALS ---
+    // --- 6. MODALS ---
+    function togglePlaylistModal(show) {
+        document.getElementById('playlistModal').classList.toggle('active', show);
+    }
+
     function toggleVaultModal(show) {
         const modal = document.getElementById('vaultModal');
         modal.classList.toggle('active', show);
