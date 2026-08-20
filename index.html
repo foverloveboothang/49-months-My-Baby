@@ -9,12 +9,12 @@
     
     <style>
         :root {
-            --bg-dark: #0A080C;
-            --card-dark: #151219;
-            --dull-gold: #C5A059;
+            --bg-dark: #0B090D;
+            --card-dark: #18131A;
+            --dull-gold: #C9A86A;
             --gold-light: #E5C378;
             --sky-blue: #89CFF0;
-            --soft-pink: #F7CAD0;
+            --soft-pink: #F4C7D2;
             --beige: #F5EBE0;
             --border-dark: #2A2430;
             --shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
@@ -262,12 +262,6 @@
             padding: 10px;
             line-height: 1.3;
         }
-        #scratchCanvas {
-            position: absolute; top: 0; left: 0;
-            width: 100%; height: 100%;
-            cursor: pointer;
-            z-index: 5;
-        }
 
         /* --- STEP 4: REALISTIC HANDWRITTEN SCRAPBOOK PAGE --- */
         .scrapbook-3d-scene {
@@ -483,12 +477,7 @@
 </div>
 
 <!-- UTILITY BUTTONS -->
-<button class="playlist-btn" onclick="togglePlaylistModal(true)">🎶 Our Playlist</button>
-<button class="audio-toggle-btn" onclick="toggleAudio()"><span id="audioIcon">🎵</span> <span id="currentTrackLabel">Kethan - Kesho Kutwa</span></button>
 <button class="vault-btn" onclick="toggleVaultModal(true)">💎 49 Reasons Vault</button>
-
-<!-- AUDIO ENGINE -->
-<audio id="bgmAudio" loop src="kethan-kesho-kutwa.mp3"></audio>
 
 <!-- STEP 1: COVER WITH LUXURY WATCH DIAL -->
 <div class="screen-step active" id="step1">
@@ -553,13 +542,10 @@
             <p style="font-size: 0.85rem; color: #A098A6; max-width: 600px; margin: 0 auto 15px; line-height: 1.5;">
                 For completing <strong>49 glorious months (1,491 days)</strong> of unmatched loyalty, breathtaking beauty, and being the ultimate dream partner as we enter our 5th year together.
             </p>
-
-            <!-- SCRATCH CARD SURPRISE -->
-            <div class="scratch-card-wrapper">
+            <!-- ANNIVERSARY SURPRISE MESSAGE -->
+            <div class="scratch-card-wrapper surprise-message-card">
                 <div class="scratch-secret-text">🎁 Surprise Money Transfer:<br>A surprise amount will be sent to you on a random day when I get it! 💸✨</div>
-                <canvas id="scratchCanvas"></canvas>
             </div>
-            <div style="font-size: 0.7rem; color: var(--sky-blue); margin-top: 4px;">(Scratch foil above with finger/mouse!)</div>
         </div>
     </div>
 
@@ -808,61 +794,6 @@
     </div>
 </div>
 
-<!-- PLAYLIST MODAL WITH INTERACTIVE PLAYLIST -->
-<div class="playlist-modal" id="playlistModal">
-    <div class="playlist-card-container">
-        <h3 style="color: var(--dull-gold); font-family: 'Cinzel', serif; text-align: center; margin-bottom: 5px;">Our Playlist 🎶</h3>
-        <p style="color: var(--sky-blue); font-size: 0.78rem; text-align: center; margin-bottom: 15px;">Tap any song to play it instantly!</p>
-        
-        <div class="song-item active-song" onclick="playPlaylistTrack(0)">
-            <div>
-                <div class="song-title">Kesho Kutwa <span style="font-size:0.7rem; color:var(--dull-gold);">(New Addition)</span></div>
-                <div class="song-artist">Kethan</div>
-            </div>
-            <div class="play-indicator" id="playInd-0">▶ Play</div>
-        </div>
-        <div class="song-item" onclick="playPlaylistTrack(1)">
-            <div>
-                <div class="song-title">Suzanna</div>
-                <div class="song-artist">Sauti Sol</div>
-            </div>
-            <div class="play-indicator" id="playInd-1">▶ Play</div>
-        </div>
-        <div class="song-item" onclick="playPlaylistTrack(2)">
-            <div>
-                <div class="song-title">Pombe Sigara</div>
-                <div class="song-artist">Nviiri the Storyteller</div>
-            </div>
-            <div class="play-indicator" id="playInd-2">▶ Play</div>
-        </div>
-        <div class="song-item" onclick="playPlaylistTrack(3)">
-            <div>
-                <div class="song-title">Lucy</div>
-                <div class="song-artist">Bensoul</div>
-            </div>
-            <div class="play-indicator" id="playInd-3">▶ Play</div>
-        </div>
-        <div class="song-item" onclick="playPlaylistTrack(4)">
-            <div>
-                <div class="song-title">Cherry Orange</div>
-                <div class="song-artist">Xenia Manasseh</div>
-            </div>
-            <div class="play-indicator" id="playInd-4">▶ Play</div>
-        </div>
-        <div class="song-item" onclick="playPlaylistTrack(5)">
-            <div>
-                <div class="song-title">Insecure</div>
-                <div class="song-artist">Bien</div>
-            </div>
-            <div class="play-indicator" id="playInd-5">▶ Play</div>
-        </div>
-
-        <div style="text-align: center; margin-top: 20px;">
-            <button class="btn-outline" onclick="togglePlaylistModal(false)">Close Playlist</button>
-        </div>
-    </div>
-</div>
-
 <!-- 49 MEMORY VAULT MODAL -->
 <div class="vault-modal" id="vaultModal">
     <h3 style="color: var(--dull-gold); font-family: 'Cinzel', serif; margin-bottom: 5px;">49 Reasons Why I Love You 💎</h3>
@@ -881,58 +812,7 @@
 </div>
 
 <script>
-    // --- 1. PLAYLIST TRACK DATA & AUDIO ENGINE ---
-    const playlistData = [
-        { title: "Kesho Kutwa", artist: "Kethan", src: "kethan-kesho-kutwa.mp3" },
-        { title: "Suzanna", artist: "Sauti Sol", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
-        { title: "Pombe Sigara", artist: "Nviiri the Storyteller", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },
-        { title: "Lucy", artist: "Bensoul", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" },
-        { title: "Cherry Orange", artist: "Xenia Manasseh", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" },
-        { title: "Insecure", artist: "Bien", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3" }
-    ];
 
-    let currentTrackIndex = 0;
-    let bgmPlaying = false;
-
-    function playPlaylistTrack(index) {
-        currentTrackIndex = index;
-        const track = playlistData[index];
-        const audio = document.getElementById('bgmAudio');
-        
-        audio.src = track.src;
-        audio.play().then(() => {
-            bgmPlaying = true;
-            document.getElementById('audioIcon').innerText = '⏸️';
-        }).catch(err => console.log("Audio play allowed on user interaction."));
-
-        document.getElementById('currentTrackLabel').innerText = `${track.artist} - ${track.title}`;
-
-        // Update UI highlights
-        document.querySelectorAll('.song-item').forEach((item, idx) => {
-            if (idx === index) {
-                item.classList.add('active-song');
-                document.getElementById(`playInd-${idx}`).innerText = '🔊 Playing';
-            } else {
-                item.classList.remove('active-song');
-                document.getElementById(`playInd-${idx}`).innerText = '▶ Play';
-            }
-        });
-    }
-
-    function toggleAudio() {
-        const audio = document.getElementById('bgmAudio');
-        if (!bgmPlaying) {
-            audio.play();
-            bgmPlaying = true;
-            document.getElementById('audioIcon').innerText = '⏸️';
-            document.getElementById(`playInd-${currentTrackIndex}`).innerText = '🔊 Playing';
-        } else {
-            audio.pause();
-            bgmPlaying = false;
-            document.getElementById('audioIcon').innerText = '🎵';
-            document.getElementById(`playInd-${currentTrackIndex}`).innerText = '▶ Play';
-        }
-    }
 
     // --- 2. UPDATED ALL 49 REASONS DATASET ---
     const reasonsList = [
@@ -1045,38 +925,6 @@
         if (parseInt(selectEl.value) > 0) card.classList.add('has-priority');
         else card.classList.remove('has-priority');
     }
-
-    // --- 5. DIGITAL SCRATCH CARD ---
-    const sCanvas = document.getElementById('scratchCanvas');
-    const sCtx = sCanvas.getContext('2d');
-    function initScratchCard() {
-        sCanvas.width = sCanvas.offsetWidth;
-        sCanvas.height = sCanvas.offsetHeight;
-        sCtx.fillStyle = '#C5A059';
-        sCtx.fillRect(0, 0, sCanvas.width, sCanvas.height);
-        sCtx.fillStyle = '#111';
-        sCtx.font = 'bold 12px sans-serif';
-        sCtx.textAlign = 'center';
-        sCtx.fillText('✨ SCRATCH WITH FINGER ✨', sCanvas.width / 2, sCanvas.height / 2 + 4);
-    }
-    let isScratching = false;
-    function scratch(e) {
-        if (!isScratching) return;
-        const rect = sCanvas.getBoundingClientRect();
-        const x = (e.clientX || e.touches[0].clientX) - rect.left;
-        const y = (e.clientY || e.touches[0].clientY) - rect.top;
-        sCtx.globalCompositeOperation = 'destination-out';
-        sCtx.beginPath();
-        sCtx.arc(x, y, 18, 0, Math.PI * 2);
-        sCtx.fill();
-    }
-    sCanvas.addEventListener('mousedown', () => isScratching = true);
-    sCanvas.addEventListener('mouseup', () => isScratching = false);
-    sCanvas.addEventListener('mousemove', scratch);
-    sCanvas.addEventListener('touchstart', () => isScratching = true);
-    sCanvas.addEventListener('touchend', () => isScratching = false);
-    sCanvas.addEventListener('touchmove', scratch);
-    setTimeout(initScratchCard, 500);
 
     // --- 6. MODALS ---
     function togglePlaylistModal(show) {
@@ -1196,6 +1044,174 @@
         masterSelectedSpots.forEach((s, i) => text += `${i+1}. ${s.title} (${s.city}) - Rating: ${s.score}/10\n`);
         window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
     }
+</script>
+
+
+<script>
+/* =========================================================
+   HIDDEN BACKGROUND MUSIC
+   A small original ambient beat is generated in the browser.
+   No song title, playlist, or music file is displayed.
+   Browsers require a user gesture before audible autoplay.
+   ========================================================= */
+(() => {
+    let ctx = null;
+    let master = null;
+    let timer = null;
+    let nextNoteTime = 0;
+    let step = 0;
+
+    const bpm = 76;
+    const stepTime = 60 / bpm / 2;
+
+    function createVoice(type, frequency, time, duration, volume, filterFreq) {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        const filter = ctx.createBiquadFilter();
+
+        osc.type = type;
+        osc.frequency.setValueAtTime(frequency, time);
+
+        filter.type = "lowpass";
+        filter.frequency.setValueAtTime(filterFreq, time);
+        filter.Q.value = 0.6;
+
+        gain.gain.setValueAtTime(0.0001, time);
+        gain.gain.linearRampToValueAtTime(volume, time + 0.015);
+        gain.gain.exponentialRampToValueAtTime(0.0001, time + duration);
+
+        osc.connect(filter);
+        filter.connect(gain);
+        gain.connect(master);
+
+        osc.start(time);
+        osc.stop(time + duration + 0.03);
+    }
+
+    function kick(time) {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(125, time);
+        osc.frequency.exponentialRampToValueAtTime(48, time + 0.16);
+
+        gain.gain.setValueAtTime(0.0001, time);
+        gain.gain.exponentialRampToValueAtTime(0.38, time + 0.008);
+        gain.gain.exponentialRampToValueAtTime(0.0001, time + 0.20);
+
+        osc.connect(gain);
+        gain.connect(master);
+        osc.start(time);
+        osc.stop(time + 0.22);
+    }
+
+    function hat(time) {
+        const bufferSize = ctx.sampleRate * 0.045;
+        const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const data = buffer.getChannelData(0);
+
+        for (let i = 0; i < bufferSize; i++) {
+            data[i] = Math.random() * 2 - 1;
+        }
+
+        const source = ctx.createBufferSource();
+        const filter = ctx.createBiquadFilter();
+        const gain = ctx.createGain();
+
+        source.buffer = buffer;
+        filter.type = "highpass";
+        filter.frequency.value = 6500;
+
+        gain.gain.setValueAtTime(0.0001, time);
+        gain.gain.exponentialRampToValueAtTime(0.045, time + 0.003);
+        gain.gain.exponentialRampToValueAtTime(0.0001, time + 0.045);
+
+        source.connect(filter);
+        filter.connect(gain);
+        gain.connect(master);
+        source.start(time);
+    }
+
+    // A warm four-chord progression.
+    const chords = [
+        [261.63, 329.63, 392.00], // C
+        [220.00, 261.63, 329.63], // Am
+        [174.61, 220.00, 261.63], // F
+        [196.00, 246.94, 293.66]  // G
+    ];
+
+    function scheduleStep(time) {
+        const bar = Math.floor(step / 8) % 4;
+        const half = step % 8;
+        const chord = chords[bar];
+
+        // Gentle bass pulse.
+        if (half === 0 || half === 4) {
+            createVoice("sine", chord[0] / 2, time, 0.45, 0.09, 420);
+        }
+
+        // Soft kick on the main beats.
+        if (half === 0 || half === 4) kick(time);
+
+        // Light percussion.
+        if (half % 2 === 1) hat(time);
+
+        // Warm chord notes, staggered slightly for a soft romantic feel.
+        if (half === 0) {
+            createVoice("triangle", chord[0], time, 0.85, 0.026, 1500);
+            createVoice("triangle", chord[1], time + 0.035, 0.80, 0.022, 1500);
+            createVoice("triangle", chord[2], time + 0.07, 0.75, 0.018, 1500);
+        }
+
+        // Small melody phrase.
+        const melody = [523.25, 587.33, 659.25, 587.33, 523.25, 493.88, 440.00, 493.88];
+        if (step % 2 === 0) {
+            createVoice("sine", melody[(step / 2) % melody.length],
+                        time, 0.30, 0.018, 2200);
+        }
+    }
+
+    function scheduler() {
+        while (nextNoteTime < ctx.currentTime + 0.15) {
+            scheduleStep(nextNoteTime);
+            nextNoteTime += stepTime;
+            step++;
+        }
+    }
+
+    async function startMusic() {
+        if (!ctx) {
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            if (!AudioContext) return;
+
+            ctx = new AudioContext();
+            master = ctx.createGain();
+
+            // Clearly audible but still background-level.
+            master.gain.value = 0.16;
+            master.connect(ctx.destination);
+
+            nextNoteTime = ctx.currentTime + 0.05;
+            scheduler();
+            timer = setInterval(scheduler, 25);
+        }
+
+        if (ctx.state === "suspended") {
+            await ctx.resume();
+        }
+    }
+
+    // Start as soon as the visitor interacts with the page.
+    // This is the earliest reliable point browsers allow audible sound.
+    ["pointerdown", "touchstart", "keydown"].forEach(eventName => {
+        window.addEventListener(eventName, startMusic, { once: true, passive: true });
+    });
+
+    // Also expose a simple global function in case another page element
+    // wants to start the music explicitly.
+    window.startBackgroundMusic = startMusic;
+})();
 </script>
 
 </body>
