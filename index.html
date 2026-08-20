@@ -520,6 +520,77 @@
             line-height: 1.35;
         }
 
+        /* --- STEP 6: DYNAMIC ITINERARY --- */
+        .itinerary-container {
+            width: 100%;
+            max-width: 850px;
+            background: var(--card-dark);
+            border: 1px solid var(--dull-gold);
+            border-radius: 20px;
+            padding: 35px 25px;
+            box-shadow: var(--shadow);
+        }
+
+        .itinerary-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin: 25px 0;
+            max-height: 55vh;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        .itinerary-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: #110E14;
+            border: 1px solid var(--border-dark);
+            border-left: 4px solid var(--dull-gold);
+            padding: 12px 18px;
+            border-radius: 12px;
+        }
+
+        .itinerary-badge {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--dull-gold);
+            color: #000;
+            font-weight: 800;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .itinerary-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .itinerary-details {
+            flex-grow: 1;
+        }
+
+        .itinerary-spot-title {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--beige);
+        }
+
+        .itinerary-city-tag {
+            font-size: 0.75rem;
+            color: var(--sky-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: scale(0.98); }
             to { opacity: 1; transform: scale(1); }
@@ -528,13 +599,14 @@
 </head>
 <body>
 
-<!-- NAVIGATION DOTS -->
+<!-- NAVIGATION DOTS (6 STEPS NOW) -->
 <div class="nav-header">
     <div class="nav-dot active" onclick="goToStep(1)"></div>
     <div class="nav-dot" onclick="goToStep(2)"></div>
     <div class="nav-dot" onclick="goToStep(3)"></div>
     <div class="nav-dot" onclick="goToStep(4)"></div>
     <div class="nav-dot" onclick="goToStep(5)"></div>
+    <div class="nav-dot" onclick="goToStep(6)"></div>
 </div>
 
 <!-- STEP 1: COVER WITH LUXURY WATCH DIAL -->
@@ -671,7 +743,7 @@
     </div>
 
     <!-- NAIROBI CONTENT -->
-    <div class="city-content active" id="city-nairobi">
+    <div class="city-content active" id="city-nairobi" data-city="Nairobi">
         <div class="subcategory-header">🧺 PICNICS</div>
         <div class="spots-grid">
             <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Karura Forest (Sigiria / KFEET)</div><div class="spot-desc">Well-maintained lawns under indigenous canopy trees with bike rentals & cafes.</div></div></div>
@@ -723,7 +795,7 @@
     </div>
 
     <!-- MOMBASA CONTENT -->
-    <div class="city-content" id="city-mombasa">
+    <div class="city-content" id="city-mombasa" data-city="Mombasa">
         <div class="subcategory-header">🧺 PICNICS</div>
         <div class="spots-grid">
             <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Mama Ngina Waterfront Park</div><div class="spot-desc">Scenic oceanfront promenade along Kilindini Channel to watch ships sail by.</div></div></div>
@@ -775,7 +847,7 @@
     </div>
 
     <!-- NAKURU CONTENT -->
-    <div class="city-content" id="city-nakuru">
+    <div class="city-content" id="city-nakuru" data-city="Nakuru">
         <div class="subcategory-header">🧺 PICNICS</div>
         <div class="spots-grid">
             <div class="spot-card" onclick="toggleSpot(this)"><img src="https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&w=400&q=80" class="spot-img"><div class="spot-info"><div class="spot-title">Lord Egerton Castle Grounds</div><div class="spot-desc">Rolling manicured lawns surrounding a grand historic castle.</div></div></div>
@@ -832,6 +904,27 @@
     </div>
 </div>
 
+<!-- STEP 6: DYNAMIC CURATED ITINERARY -->
+<div class="screen-step" id="step6">
+    <div class="itinerary-container">
+        <h2 style="font-family: 'Cinzel', serif; color: var(--dull-gold); text-align: center; margin-bottom: 5px;">Our Master Date Schedule 🗓️</h2>
+        <p style="color: var(--sky-blue); font-size: 0.85rem; text-align: center;">Here is the exact order of dates we will go on after Embu, my queen!</p>
+
+        <div class="itinerary-list" id="itineraryListContainer">
+            <!-- Dynamically filled by JavaScript -->
+        </div>
+
+        <p style="text-align: center; font-size: 0.85rem; color: var(--soft-pink); font-style: italic; margin-top: 10px;">
+            "Your wish is my command baby—I can't wait to spoil you endlessly!" - Paul 👑
+        </p>
+    </div>
+
+    <div style="display: flex; gap: 15px; margin-top: 20px;">
+        <button class="btn-outline" onclick="goToStep(5)">Modify Choices ✏️</button>
+        <button class="btn-gold" onclick="alert('Itinerary locked in! Get ready for the best dates ever, baby! ❤️')">Lock In Masterplan 🔒</button>
+    </div>
+</div>
+
 <script>
     function goToStep(stepNum) {
         document.querySelectorAll('.screen-step').forEach(el => el.classList.remove('active'));
@@ -855,12 +948,34 @@
     }
 
     function submitWishlist() {
-        const selectedCount = document.querySelectorAll('.spot-card.selected').length;
-        if(selectedCount === 0) {
+        const selectedCards = document.querySelectorAll('.spot-card.selected');
+        if(selectedCards.length === 0) {
             alert("Please select at least one date spot you'd like us to go on!");
-        } else {
-            alert(`Your ${selectedCount} selected date priorities have been saved! 💖 I can't wait to treat you to all of them, Tracy my queen!`);
+            return;
         }
+
+        const container = document.getElementById('itineraryListContainer');
+        container.innerHTML = ''; // Clear previous items
+
+        selectedCards.forEach((card, index) => {
+            const title = card.querySelector('.spot-title').innerText;
+            const imgSrc = card.querySelector('.spot-img').src;
+            const city = card.closest('.city-content').getAttribute('data-city');
+
+            const itemHtml = `
+                <div class="itinerary-item">
+                    <div class="itinerary-badge">#${index + 1}</div>
+                    <img src="${imgSrc}" class="itinerary-img" alt="${title}">
+                    <div class="itinerary-details">
+                        <div class="itinerary-spot-title">${title}</div>
+                        <div class="itinerary-city-tag">📍 ${city} Priority Date Stop</div>
+                    </div>
+                </div>
+            `;
+            container.innerHTML += itemHtml;
+        });
+
+        goToStep(6);
     }
 </script>
 
